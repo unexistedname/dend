@@ -174,7 +174,6 @@ export function Identity({ character, ctx, patch }: Props) {
               onChange={(e) =>
                 patch({ variantHuman: e.target.checked, racialAbilityChoices: {} })
               }
-              className="accent-stone-700"
             />
             <Tip text="Two different ability scores of your choice increase by 1, you gain proficiency in one skill of your choice, and you gain one feat of your choice.">
               Variant Human
@@ -231,7 +230,7 @@ export function Identity({ character, ctx, patch }: Props) {
             />
           </Field>
         </div>
-        <p className="mt-2 text-xs text-stone-600">
+        <p className="mt-2 text-xs text-muted">
           Hit Die d{klass?.hitDie ?? 10}
           {klass?.savingThrows.length
             ? ` · saving throws ${klass.savingThrows
@@ -268,7 +267,7 @@ export function Identity({ character, ctx, patch }: Props) {
           </Field>
         </div>
 
-        <p className="mt-2 text-xs text-stone-600">
+        <p className="mt-2 text-xs text-muted">
           Grants:{' '}
           {background?.skillProficiencies
             .map((skill) => ctx.skill.get(skill.replace('skill-', ''))?.name ?? skill)

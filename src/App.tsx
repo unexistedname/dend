@@ -43,15 +43,14 @@ export function App({ ctx }: { ctx: RulesContext }) {
     reader.readAsText(file)
   }
 
-  const action =
-    'rounded border border-stone-300 bg-white px-2.5 py-1.5 text-sm hover:bg-stone-100 disabled:opacity-40'
+  const action = 'btn'
   const tabButton = (value: 'build' | 'sheet', label: string) => (
     <button
       key={value}
       type="button"
       onClick={() => setTab(value)}
-      className={`rounded px-3 py-1.5 text-sm font-medium ${
-        tab === value ? 'bg-stone-800 text-white' : 'text-stone-600 hover:bg-stone-200'
+      className={`rounded px-3 py-1.5 font-display text-xs font-semibold uppercase tracking-[0.08em] transition-colors duration-150 ${
+        tab === value ? 'bg-brand text-white' : 'text-muted hover:bg-panel-2 hover:text-parchment'
       }`}
     >
       {label}
@@ -59,19 +58,30 @@ export function App({ ctx }: { ctx: RulesContext }) {
   )
 
   return (
-    <div className="min-h-screen bg-stone-100 text-stone-900">
-      <header className="no-print sticky top-0 z-10 border-b border-stone-300 bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-2 px-4 py-2">
-          <h1 className="mr-2 text-lg font-bold tracking-tight">dend</h1>
-          <span className="mr-auto text-xs text-stone-500">D&amp;D 5e character builder (2014 rules)</span>
+    <div className="min-h-screen bg-night text-body">
+      <header className="no-print sticky top-0 z-10 border-b border-line bg-night/95 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-4 py-2.5">
+          <h1 className="mr-1 flex items-center gap-2 text-xl font-bold">
+            <span className="grid h-8 w-8 place-items-center rounded bg-brand font-brand text-base text-white shadow-[0_0_18px_rgb(228_7_18_/_0.4)]">
+              D
+            </span>
+            <span className="font-brand tracking-normal">dend</span>
+          </h1>
+          <span className="mr-auto text-[11px] uppercase tracking-[0.18em] text-gold">
+            D&amp;D 5e &middot; 2014 rules
+          </span>
 
-          <div className="flex rounded-lg bg-stone-200 p-0.5">
+          <div className="flex rounded border border-line bg-night-2 p-0.5">
             {tabButton('build', 'Build')}
             {tabButton('sheet', 'Sheet')}
           </div>
 
           <div className="flex flex-wrap items-center gap-1.5">
-            <button type="button" className={action} onClick={() => useCharacterStore.getState().create()}>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => useCharacterStore.getState().create()}
+            >
               New
             </button>
             <button
@@ -139,7 +149,7 @@ export function App({ ctx }: { ctx: RulesContext }) {
         </div>
 
         {error ? (
-          <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 bg-red-50 px-4 py-1.5 text-sm text-red-800">
+          <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 bg-red-500/10 px-4 py-1.5 text-sm text-red-300">
             <span>{error}</span>
             <button type="button" className="text-xs underline" onClick={() => useCharacterStore.getState().clearError()}>
               Dismiss
@@ -150,45 +160,37 @@ export function App({ ctx }: { ctx: RulesContext }) {
 
       <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:flex-row">
         <aside className="no-print w-full shrink-0 sm:w-56">
-          <nav className="rounded-lg border border-stone-300 bg-white p-2 shadow-sm">
-            <h2 className="px-1 py-1 text-xs font-semibold uppercase tracking-wide text-stone-500">
-              Characters
-            </h2>
+          <nav className="rounded border border-line bg-panel p-2 shadow-[0_1px_2px_rgb(0_0_0_/_0.45)]">
+            <h2 className="label-caps px-1 py-1">Characters</h2>
             <ul className="grid gap-0.5">
               {characters.map((character) => (
                 <li key={character.id}>
                   <button
                     type="button"
                     onClick={() => useCharacterStore.getState().select(character.id)}
-                    className={`w-full rounded px-2 py-1.5 text-left text-sm ${
+                    className={`w-full rounded px-2 py-1.5 text-left text-sm transition-colors duration-150 ${
                       character.id === activeId
-                        ? 'bg-stone-800 text-white'
-                        : 'hover:bg-stone-100'
+                        ? 'bg-panel-2 text-parchment shadow-[inset_3px_0_0_var(--color-brand)]'
+                        : 'hover:bg-panel-2'
                     }`}
                   >
                     <span className="block truncate font-medium">{character.name || 'Unnamed'}</span>
-                    <span
-                      className={`block truncate text-xs ${
-                        character.id === activeId ? 'text-stone-300' : 'text-stone-500'
-                      }`}
-                    >
-                      {summary(character, ctx)}
-                    </span>
+                    <span className="block truncate text-xs text-muted">{summary(character, ctx)}</span>
                   </button>
                 </li>
               ))}
             </ul>
             {!characters.length ? (
-              <p className="px-1 py-2 text-xs text-stone-500">No characters yet.</p>
+              <p className="px-1 py-2 text-xs text-muted">No characters yet.</p>
             ) : null}
             <button
               type="button"
-              className={`mt-1 w-full ${action}`}
+              className={`${action} mt-1 w-full`}
               onClick={() => useCharacterStore.getState().create()}
             >
               + New character
             </button>
-            <p className="mt-2 border-t border-stone-200 px-1 pt-2 text-[11px] leading-relaxed text-stone-500">
+            <p className="mt-2 border-t border-line-soft px-1 pt-2 text-[11px] leading-relaxed text-muted">
               A PNG sheet cannot be generated; use <strong>Print</strong> → “Save as PDF”
               for a PDF sheet. Markdown (for AI use) and JSON (backup) download from the
               header.
@@ -204,14 +206,14 @@ export function App({ ctx }: { ctx: RulesContext }) {
               <Sheet key={active.id} character={active} ctx={ctx} />
             )
           ) : (
-            <div className="rounded-lg border border-stone-300 bg-white p-8 text-center shadow-sm">
+            <div className="rounded border border-line bg-panel p-8 text-center shadow-[0_1px_2px_rgb(0_0_0_/_0.45)]">
               <h2 className="text-lg font-semibold">Nothing selected</h2>
-              <p className="mt-1 text-sm text-stone-600">
+              <p className="mt-1 text-sm text-muted">
                 Create a character to start building. Everything is saved in this browser.
               </p>
               <button
                 type="button"
-                className={`mt-4 ${action}`}
+                className="btn btn-primary mt-4"
                 onClick={() => useCharacterStore.getState().create()}
               >
                 Create character

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Ability scores: the four PHB methods, live point-buy budget, and the derived
  * breakdown so racial and ASI bonuses are visible rather than silently applied.
  *
@@ -93,20 +93,20 @@ export function Abilities({ character, ctx, patch }: Props) {
           <button
             type="button"
             onClick={useStandardArray}
-            className="rounded border border-stone-300 px-2 py-1.5 text-sm hover:bg-stone-100"
+            className="btn"
           >
             Standard array
           </button>
           <button
             type="button"
             onClick={useRolled}
-            className="rounded border border-stone-300 px-2 py-1.5 text-sm hover:bg-stone-100"
+            className="btn"
           >
             Roll 4d6
           </button>
           {method === 'point-buy' ? (
             <span
-              className={`ml-auto text-sm ${overBudget ? 'font-semibold text-red-700' : 'text-stone-600'}`}
+              className={`ml-auto text-sm ${overBudget ? 'font-semibold text-red-400' : 'text-muted'}`}
               title="Your ability scores start at 8. You have 27 points to spend."
             >
               {remaining} points left
@@ -119,8 +119,8 @@ export function Abilities({ character, ctx, patch }: Props) {
         {ABILITY_KEYS.map((key) => {
           const row = derived.abilities[key]
           return (
-            <div key={key} className="rounded border border-stone-200 p-2 text-center">
-              <div className="text-xs font-semibold uppercase tracking-wide text-stone-600">
+            <div key={key} className="rounded border border-line-soft p-2 text-center">
+              <div className="text-xs font-semibold uppercase tracking-wide text-muted">
                 {key}
               </div>
               <NumberInput
@@ -134,7 +134,7 @@ export function Abilities({ character, ctx, patch }: Props) {
               <div className="mt-1 text-lg font-bold">
                 {formatModifier(abilityModifier(row.total))}
               </div>
-              <div className="text-[11px] leading-tight text-stone-500">
+              <div className="text-[11px] leading-tight text-muted">
                 total {row.total}
                 {row.racial ? ` (+${row.racial})` : ''}
                 {row.asi ? ` (ASI +${row.asi})` : ''}
@@ -146,7 +146,7 @@ export function Abilities({ character, ctx, patch }: Props) {
 
       <table className="mt-3 w-full text-sm">
         <thead>
-          <tr className="border-b border-stone-200 text-left text-xs uppercase text-stone-500">
+          <tr className="border-b border-line-soft text-left text-xs uppercase text-muted">
             <th className="py-1">Score</th>
             <th className="py-1 text-right">Base</th>
             <th className="py-1 text-right">Racial</th>
@@ -159,11 +159,11 @@ export function Abilities({ character, ctx, patch }: Props) {
           {ABILITY_KEYS.map((key) => {
             const row = derived.abilities[key]
             return (
-              <tr key={key} className="border-b border-stone-100">
+              <tr key={key} className="border-b border-line-soft">
                 <td className="py-1">{abilityLabels[key]}</td>
                 <td className="py-1 text-right">{row.base}</td>
-                <td className="py-1 text-right">{row.racial || '—'}</td>
-                <td className="py-1 text-right">{row.asi || '—'}</td>
+                <td className="py-1 text-right">{row.racial || 'â€”'}</td>
+                <td className="py-1 text-right">{row.asi || 'â€”'}</td>
                 <td className="py-1 text-right font-semibold">{row.total}</td>
                 <td className="py-1 text-right">
                   <Tip text="Your ability modifier is half your ability score minus 10, rounded down.">
@@ -189,10 +189,10 @@ export function Abilities({ character, ctx, patch }: Props) {
 
       {asiLevels.length ? (
         <div className="mt-4">
-          <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-stone-500">
+          <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-muted">
             Ability Score Improvements
           </h3>
-          <p className="mb-2 text-xs text-stone-600">
+          <p className="mb-2 text-xs text-muted">
             The class table grants one at certain levels; a feat may be taken instead.
           </p>
           <div className="grid gap-2">
@@ -252,12 +252,12 @@ function AsiRow({
   }
 
   const abilityOptions = [
-    { value: '', label: '—' },
+    { value: '', label: 'â€”' },
     ...ABILITY_KEYS.map((key) => ({ value: key, label: abilityLabels[key] })),
   ]
 
   return (
-    <div className="rounded border border-stone-200 p-2">
+    <div className="rounded border border-line-soft p-2">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <span className="text-sm font-medium">{label}</span>
         <div className="flex items-center gap-3">
@@ -268,7 +268,6 @@ function AsiRow({
                 name={`mode-${label}`}
                 checked={mode === 'ability'}
                 onChange={() => setMode('ability')}
-                className="accent-stone-700"
               />
               Ability
             </label>
@@ -279,7 +278,6 @@ function AsiRow({
               name={`mode-${label}`}
               checked={mode === 'feat'}
               onChange={() => setMode('feat')}
-              className="accent-stone-700"
             />
             Feat
           </label>
@@ -287,7 +285,7 @@ function AsiRow({
             <button
               type="button"
               onClick={onClear}
-              className="rounded border border-stone-300 px-2 py-0.5 text-xs hover:bg-stone-100"
+              className="btn text-xs"
             >
               Clear
             </button>
@@ -304,19 +302,19 @@ function AsiRow({
             if (!name) onClear()
             else onUpsert({ abilityBonuses: {}, feat: name, asiType: 'feat' })
           }}
-          placeholder="Feat name (from the Player's Handbook — feats are not in the SRD)"
-          className="mt-2 w-full rounded border border-stone-300 px-2 py-1 text-sm"
+          placeholder="Feat name (from the Player's Handbook â€” feats are not in the SRD)"
+          className="mt-2 w-full rounded border border-line px-2 py-1 text-sm"
         />
       ) : (
         <div className="mt-2 flex flex-wrap items-center gap-2 text-sm">
           <Select value={first} onChange={(value) => setPair(value, second)} options={abilityOptions} />
-          <span className="text-xs text-stone-600">and</span>
+          <span className="text-xs text-muted">and</span>
           <Select
             value={second}
             onChange={(value) => setPair(first, value)}
             options={abilityOptions}
           />
-          <span className="text-xs text-stone-600">
+          <span className="text-xs text-muted">
             Same score or none = +2; two different scores = +1 each.
           </span>
         </div>

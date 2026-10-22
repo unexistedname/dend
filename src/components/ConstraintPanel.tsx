@@ -12,9 +12,9 @@ import { deriveCharacter } from '../rules/derived'
 import { Tip } from './ui'
 
 const SEVERITY_STYLE = {
-  error: 'border-red-300 bg-red-50 text-red-800',
-  warning: 'border-amber-300 bg-amber-50 text-amber-900',
-  info: 'border-sky-300 bg-sky-50 text-sky-900',
+  error: 'border-red-500/40 bg-red-500/10 text-red-300',
+  warning: 'border-amber-500/40 bg-amber-500/10 text-amber-200',
+  info: 'border-sky-500/40 bg-sky-500/10 text-sky-200',
 } as const
 
 const SEVERITY_LABEL = { error: 'Violation', warning: 'Warning', info: 'Note' } as const
@@ -31,7 +31,7 @@ export function ConstraintPanel({
 
   if (!errors.length && !warnings.length && !infos.length) {
     return (
-      <p className="text-sm text-emerald-700">
+      <p className="text-sm text-emerald-400">
         <Tip text="The character builder checks your choices against the rules of the game.">
           No rule violations.
         </Tip>

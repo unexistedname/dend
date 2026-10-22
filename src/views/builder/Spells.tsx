@@ -108,7 +108,7 @@ export function Spells({ character, ctx, patch }: Props) {
             </Tip>
           </span>
           <span>Ability {sc.numbers.ability.toUpperCase()}</span>
-          <span className="text-stone-600">
+          <span className="text-muted">
             {prepares
               ? sc.perClass.some((row) => row.entry.classIndex === 'wizard')
                 ? 'Prepares from its spellbook; the builder lists every wizard spell.'
@@ -122,16 +122,16 @@ export function Spells({ character, ctx, patch }: Props) {
             .filter(([, total]) => total > 0)
             .map(([level, total]) => (
               <label key={level} className="text-center text-sm">
-                <span className="block text-xs uppercase text-stone-600">Level {level}</span>
+                <span className="block text-xs uppercase text-muted">Level {level}</span>
                 <input
                   type="number"
                   min={0}
                   max={total}
                   value={character.spells.slots.spent[Number(level)] ?? 0}
                   onChange={(e) => setSpent(Number(level), Number(e.target.value))}
-                  className="w-full rounded border border-stone-300 px-2 py-1 text-center"
+                  className="w-full rounded border border-line px-2 py-1 text-center"
                 />
-                <span className="text-xs text-stone-500">of {total} left</span>
+                <span className="text-xs text-muted">of {total} left</span>
               </label>
             ))}
         </div>
@@ -154,7 +154,7 @@ export function Spells({ character, ctx, patch }: Props) {
           ))}
         </div>
         {grantedCantrips.length ? (
-          <p className="mb-3 text-xs text-stone-600">
+          <p className="mb-3 text-xs text-muted">
             Granted by ancestry:{' '}
             {grantedCantrips.map((spell, i) => (
               <span key={spell.index}>
@@ -175,7 +175,7 @@ export function Spells({ character, ctx, patch }: Props) {
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
             placeholder="Filter spells"
-            className="rounded border border-stone-300 px-2 py-1 text-sm"
+            className="rounded border border-line px-2 py-1 text-sm"
           />
         </div>
         <div className="grid gap-1 sm:grid-cols-2">
@@ -192,7 +192,7 @@ export function Spells({ character, ctx, patch }: Props) {
         </div>
 
         {blocked.length ? (
-          <div className="mt-3 rounded border border-red-300 bg-red-50 p-2 text-sm text-red-800">
+          <div className="mt-3 rounded border border-red-500/40 bg-red-500/10 p-2 text-sm text-red-300">
             {blocked.map((entry) => (
               <p key={entry.spellIndex}>
                 <strong>{entry.spellName}</strong> is restricted to:{' '}
@@ -225,7 +225,7 @@ function SpellOption({
   const school = spell.school ? ctx.magicSchool.get(spell.school) : null
 
   return (
-    <details className="rounded border border-stone-200 px-2 py-1 text-sm">
+    <details className="rounded border border-line-soft px-2 py-1 text-sm">
       <summary className="flex cursor-pointer items-center gap-2">
         <input
           type="checkbox"
@@ -233,10 +233,9 @@ function SpellOption({
           disabled={!checked && atLimit}
           onChange={() => onToggle(index)}
           onClick={(e) => e.stopPropagation()}
-          className="accent-stone-700"
         />
         <span className="font-medium">{spell.name}</span>
-        <span className="text-xs text-stone-500">
+        <span className="text-xs text-muted">
           {spell.level === 0 ? 'cantrip' : `level ${spell.level}`}
           {school ? ` · ${school.name}` : ''}
         </span>

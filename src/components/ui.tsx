@@ -29,11 +29,14 @@ export function Card({
   id?: string
 }) {
   return (
-    <section id={id} className="rounded-lg border border-stone-300 bg-white p-4 shadow-sm print-page">
-      <h2 className="mb-3 flex items-baseline gap-2 border-b border-stone-200 pb-2 text-sm font-semibold uppercase tracking-wide">
+    <section
+      id={id}
+      className="print-page rounded border border-line bg-panel p-4 shadow-[0_1px_2px_rgb(0_0_0_/_0.45)]"
+    >
+      <h2 className="card-title">
         {title}
         {hint ? (
-          <span className="text-xs font-normal normal-case text-stone-500">
+          <span className="text-xs font-normal normal-case tracking-normal text-muted">
             <Tip text={hint}>{hint}</Tip>
           </span>
         ) : null}
@@ -54,7 +57,7 @@ export function Field({
 }) {
   return (
     <label className="block text-sm">
-      <span className="mb-1 block font-medium">
+      <span className="mb-1 block text-[11px] font-semibold uppercase tracking-[0.08em] text-muted">
         <Tip text={hint}>{label}</Tip>
       </span>
       {children}
@@ -62,8 +65,7 @@ export function Field({
   )
 }
 
-const control =
-  'w-full rounded border border-stone-300 bg-white px-2 py-1.5 text-sm focus:border-stone-500 focus:outline-none'
+const control = 'w-full text-sm'
 
 export function TextInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
   return <input {...props} className={`${control} ${props.className ?? ''}`} />
@@ -128,7 +130,7 @@ export function ChoiceList({
 
   return (
     <div className="grid gap-1 sm:grid-cols-2">
-      <p className="text-xs text-stone-600 sm:col-span-2">
+      <p className="text-xs text-muted sm:col-span-2">
         <Tip text={hint}>Choose up to {choose}</Tip>
         {selected.length > 0 ? ` — ${selected.length} selected` : ''}
       </p>
@@ -145,7 +147,6 @@ export function ChoiceList({
               checked={checked}
               disabled={blocked}
               onChange={() => onToggle(option.value)}
-              className="accent-stone-700"
             />
             {option.label}
           </label>

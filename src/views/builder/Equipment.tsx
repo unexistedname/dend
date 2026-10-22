@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Equipment: adding items by category (plus a custom entry for anything outside the
  * SRD), equipping, attuning, and the running weight and attunement totals.
  *
@@ -102,7 +102,7 @@ export function Equipment({ character, ctx, patch }: Props) {
             add(`${category}:${picked}`)
             setPicked('')
           }}
-          className="rounded bg-stone-800 px-3 py-1.5 text-sm text-white disabled:opacity-40"
+          className="btn btn-primary"
         >
           Add
         </button>
@@ -125,13 +125,13 @@ export function Equipment({ character, ctx, patch }: Props) {
             add(`custom:${name}`, name)
             setCustom('')
           }}
-          className="rounded border border-stone-300 px-3 py-1.5 text-sm hover:bg-stone-100 disabled:opacity-40"
+          className="btn"
         >
           Add custom
         </button>
       </div>
 
-      <div className="mb-2 flex flex-wrap gap-4 text-sm text-stone-700">
+      <div className="mb-2 flex flex-wrap gap-4 text-sm text-body">
         <span>
           <Tip text="Your carrying capacity is your Strength score multiplied by 15 pounds.">
             {d.inventory.weight.carried} / {d.inventory.weight.capacity} lb
@@ -146,9 +146,9 @@ export function Equipment({ character, ctx, patch }: Props) {
       </div>
 
       {rows.length === 0 ? (
-        <p className="text-sm text-stone-600">No equipment yet.</p>
+        <p className="text-sm text-muted">No equipment yet.</p>
       ) : (
-        <ul className="divide-y divide-stone-100">
+        <ul className="divide-y divide-line-soft">
           {rows.map((row) => (
             <li key={row.id} className="flex flex-wrap items-center gap-3 py-2 text-sm">
               <span className="min-w-40 flex-1">
@@ -163,7 +163,7 @@ export function Equipment({ character, ctx, patch }: Props) {
                 >
                   {row.name}
                 </Tip>
-                <span className="ml-2 text-xs uppercase text-stone-500">{row.kind}</span>
+                <span className="ml-2 text-xs uppercase text-muted">{row.kind}</span>
               </span>
 
               <label className="flex items-center gap-1 text-xs">
@@ -175,7 +175,7 @@ export function Equipment({ character, ctx, patch }: Props) {
                   onChange={(e) =>
                     updateEntry(row.id, { quantity: Math.max(1, Number(e.target.value)) })
                   }
-                  className="w-14 rounded border border-stone-300 px-1 py-0.5 text-center"
+                  className="w-14 rounded border border-line px-1 py-0.5 text-center"
                 />
               </label>
 
@@ -184,7 +184,6 @@ export function Equipment({ character, ctx, patch }: Props) {
                   type="checkbox"
                   checked={row.entry.equipped}
                   onChange={(e) => updateEntry(row.id, { equipped: e.target.checked })}
-                  className="accent-stone-700"
                 />
                 Equipped
               </label>
@@ -197,7 +196,6 @@ export function Equipment({ character, ctx, patch }: Props) {
                   disabled={!row.requiresAttunement}
                   checked={row.entry.attuned}
                   onChange={(e) => updateEntry(row.id, { attuned: e.target.checked })}
-                  className="accent-stone-700"
                 />
                 <Tip
                   text={
@@ -213,7 +211,7 @@ export function Equipment({ character, ctx, patch }: Props) {
               <button
                 type="button"
                 onClick={() => removeEntry(row.id)}
-                className="rounded border border-stone-300 px-2 py-0.5 text-xs hover:bg-stone-100"
+                className="btn text-xs"
               >
                 Remove
               </button>

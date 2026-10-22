@@ -1,19 +1,212 @@
 @import 'tailwindcss';
 
-/* Character-sheet palette: warm paper, dark ink, one accent. */
+/*
+ * Dark fantasy theme in the spirit of the official D&D site: charcoal surfaces,
+ * a red brand accent, gold highlights and condensed display type.
+ */
 @theme {
-  --color-paper: #f7f3ec;
-  --color-ink: #23201c;
-  --color-accent: #8a2b2b;
+  --color-night: #0b0909;
+  --color-night-2: #151010;
+  --color-panel: #1a1414;
+  --color-panel-2: #261d1d;
+  --color-line: #3b2f2f;
+  --color-line-soft: #2a2222;
+  --color-field: #7a6464;
+  --color-parchment: #f1e7d7;
+  --color-body: #d8ccbc;
+  --color-muted: #a89a86;
+  --color-brand: #e40712;
+  --color-brand-dark: #b00610;
+  --color-gold: #d7b26a;
+
+  --font-sans: 'Barlow Semi Condensed', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Barlow Condensed', 'Barlow Semi Condensed', ui-sans-serif, sans-serif;
+  --font-brand: 'Cinzel', ui-serif, Georgia, serif;
 }
 
 html {
-  font-family: ui-sans-serif, system-ui, sans-serif;
+  color-scheme: dark;
+  font-family: var(--font-sans);
 }
 
 body {
-  background-color: var(--color-paper);
-  color: var(--color-ink);
+  background-color: var(--color-night);
+  background-image: radial-gradient(
+    1100px 420px at 50% -200px,
+    rgb(228 7 18 / 0.22),
+    transparent 70%
+  );
+  background-repeat: no-repeat;
+  color: var(--color-body);
+  font-size: 15px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-parchment);
+}
+
+::selection {
+  background: var(--color-brand);
+  color: #fff;
+}
+
+:where(button, input, select, textarea, summary, a):focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+/* Checkboxes and radios are drawn from the theme tokens, not the OS look. */
+input[type='checkbox'],
+input[type='radio'] {
+  appearance: none;
+  background-color: var(--color-night-2);
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid var(--color-field);
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-grid;
+  flex: none;
+  height: 1rem;
+  margin: 0;
+  place-content: center;
+  transition-property: background-color, border-color;
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
+  width: 1rem;
+}
+
+input[type='radio'] {
+  border-radius: 50%;
+}
+
+input[type='checkbox']:checked {
+  background-color: var(--color-brand);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.4 6.2 4.8 8.6 9.6 3.6' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: 0.65rem;
+  border-color: var(--color-brand);
+}
+
+input[type='radio']:checked {
+  background-color: var(--color-brand);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Ccircle cx='6' cy='6' r='3' fill='%23ffffff'/%3E%3C/svg%3E");
+  background-size: 0.45rem;
+  border-color: var(--color-brand);
+}
+
+input[type='checkbox']:disabled,
+input[type='radio']:disabled {
+  background-color: transparent;
+  border-color: var(--color-line);
+  cursor: not-allowed;
+}
+
+@media (hover: hover) {
+  input[type='checkbox']:not(:disabled):not(:checked):hover,
+  input[type='radio']:not(:disabled):not(:checked):hover {
+    border-color: #9a8282;
+  }
+
+  input[type='checkbox']:checked:hover,
+  input[type='radio']:checked:hover {
+    background-color: var(--color-brand-dark);
+    border-color: var(--color-brand-dark);
+  }
+}
+
+input:not([type='checkbox']):not([type='radio']),
+select,
+textarea {
+  background-color: var(--color-night-2);
+  border: 1px solid var(--color-field);
+  border-radius: 4px;
+  color: var(--color-parchment);
+  font: inherit;
+  padding: 0.35rem 0.5rem;
+}
+
+select option {
+  background-color: var(--color-panel);
+  color: var(--color-parchment);
+}
+
+/* Native select arrow is faint on dark surfaces; draw our own. */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 4.5 6 8l3.5-3.5' fill='none' stroke='%23a89a86' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-position: right 0.45rem center;
+  background-repeat: no-repeat;
+  background-size: 0.7rem;
+  padding-right: 1.9rem;
+}
+
+/* Anything clickable shows a pointer; the disclosure rows show a chevron. */
+:where(
+  button:not(:disabled),
+  summary,
+  label:has(> input[type='checkbox']:not(:disabled)),
+  label:has(> input[type='radio']:not(:disabled))
+) {
+  cursor: pointer;
+}
+
+summary {
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::after {
+  content: '';
+  flex: none;
+  margin-left: auto;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-right: 1.5px solid var(--color-muted);
+  border-bottom: 1.5px solid var(--color-muted);
+  rotate: -45deg;
+  transition: rotate 150ms ease-out;
+}
+
+details[open] > summary::after {
+  rotate: 135deg;
+}
+
+details {
+  transition: border-color 150ms ease-out;
+}
+
+details[open] {
+  border-color: var(--color-field);
+}
+
+@media (hover: hover) {
+  details:hover {
+    border-color: var(--color-field);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  summary::after,
+  details {
+    transition: none;
+  }
+}
+
+@media (hover: hover) {
+  input:not([type='checkbox']):not([type='radio']):hover,
+  select:hover,
+  textarea:hover {
+    border-color: #9a8282;
+  }
 }
 
 /* Dotted underline marks anything with a rulebook tooltip on hover. */
@@ -24,10 +217,104 @@ body {
   text-underline-offset: 3px;
 }
 
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border: 1px solid var(--color-field);
+    border-radius: 4px;
+    background-color: var(--color-panel);
+    color: var(--color-parchment);
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 0.3rem 0.65rem;
+    text-transform: uppercase;
+    transition-property: background-color, border-color, color, scale;
+    transition-duration: 150ms;
+    transition-timing-function: ease-out;
+  }
+
+  .btn:not(:disabled):active {
+    scale: 0.96;
+  }
+
+  .btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+
+  .btn-primary {
+    background-color: var(--color-brand);
+    border-color: var(--color-brand);
+    color: #fff;
+  }
+
+  .card-title {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--color-line-soft);
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .card-title::before {
+    content: '';
+    align-self: center;
+    background-color: var(--color-brand);
+    border-radius: 2px;
+    height: 1em;
+    width: 3px;
+  }
+
+  .label-caps {
+    color: var(--color-gold);
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+}
+
+@media (hover: hover) {
+  .btn:hover {
+    background-color: var(--color-panel-2);
+    border-color: #9a8282;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-brand-dark);
+    border-color: var(--color-brand-dark);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition-property: background-color, border-color, color;
+  }
+
+  .btn:not(:disabled):active {
+    scale: 1;
+  }
+}
+
 @media print {
   /* Only the sheet prints; chrome is hidden. */
   .no-print {
     display: none !important;
+  }
+
+  html {
+    color-scheme: light;
   }
 
   body {
@@ -36,5 +323,14 @@ body {
 
   .print-page {
     break-inside: avoid;
+  }
+
+  /* shortcut: print flattens the dark theme to ink on white, losing accent colours. */
+  .print-page,
+  .print-page * {
+    background: transparent !important;
+    border-color: #bbb !important;
+    box-shadow: none !important;
+    color: #111 !important;
   }
 }

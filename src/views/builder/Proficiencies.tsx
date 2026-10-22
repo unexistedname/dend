@@ -57,14 +57,14 @@ export function Proficiencies({ character, ctx, patch }: Props) {
           </div>
         ))}
         {klass?.skillChoices.length === 0 ? (
-          <p className="text-sm text-stone-600">This class grants no skill choices.</p>
+          <p className="text-sm text-muted">This class grants no skill choices.</p>
         ) : null}
       </Card>
 
       <Card title="Tools and Instruments">
         {(klass?.instrumentChoices ?? []).length === 0 &&
         (klass?.toolChoices ?? []).length === 0 ? (
-          <p className="text-sm text-stone-600">This class grants no tool choices.</p>
+          <p className="text-sm text-muted">This class grants no tool choices.</p>
         ) : (
           <>
             {(klass?.instrumentChoices ?? []).map((group, groupIndex) => (
@@ -134,7 +134,7 @@ export function Proficiencies({ character, ctx, patch }: Props) {
         ) : null}
 
         {!background?.languages && !race?.languageOptions ? (
-          <p className="text-sm text-stone-600">
+          <p className="text-sm text-muted">
             No bonus languages to choose for this combination.
           </p>
         ) : null}

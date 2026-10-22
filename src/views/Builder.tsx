@@ -44,10 +44,10 @@ export function Builder({ character, ctx }: { character: Character; ctx: RulesCo
           onChange={(e) => patch({ notes: e.target.value })}
           rows={4}
           maxLength={5000}
-          className="w-full rounded border border-stone-300 p-2 text-sm"
+          className="w-full rounded border border-line p-2 text-sm"
           placeholder="Background, personality, anything the sheet does not cover."
         />
-        <p className="mt-1 text-xs text-stone-500">{character.notes.length}/5000</p>
+        <p className="mt-1 text-xs text-muted">{character.notes.length}/5000</p>
       </Card>
     </div>
   )

@@ -61,12 +61,12 @@ export function Sheet({ character, ctx }: { character: Character; ctx: RulesCont
   ]
 
   return (
-    <div className="grid gap-4">
+    <div className="print-page grid gap-4">
       <Card title={character.name || 'Unnamed character'}>
         <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm sm:grid-cols-3">
           {facts.map((fact) => (
             <div key={fact.label}>
-              <div className="text-[11px] uppercase tracking-wide text-stone-500">
+              <div className="text-[11px] uppercase tracking-wide text-muted">
                 {fact.label}
               </div>
               <div className="font-medium">
@@ -84,7 +84,7 @@ export function Sheet({ character, ctx }: { character: Character; ctx: RulesCont
       <Card title="Ability Scores">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-stone-200 text-left text-xs uppercase text-stone-500">
+            <tr className="border-b border-line-soft text-left text-xs uppercase text-muted">
               <th className="py-1">Score</th>
               <th className="py-1 text-right">Base</th>
               <th className="py-1 text-right">Racial</th>
@@ -99,14 +99,14 @@ export function Sheet({ character, ctx }: { character: Character; ctx: RulesCont
               const row = d.abilities[key]
               const save = d.savingThrows.find((s) => s.ability === key)
               return (
-                <tr key={key} className="border-b border-stone-100">
+                <tr key={key} className="border-b border-line-soft">
                   <td className="py-1">{abilityLabels[key]}</td>
                   <td className="py-1 text-right">{row.base}</td>
                   <td className="py-1 text-right">{row.racial || '—'}</td>
                   <td className="py-1 text-right">{row.asi || '—'}</td>
                   <td className="py-1 text-right font-semibold">{row.total}</td>
                   <td className="py-1 text-right">{formatModifier(row.modifier)}</td>
-                  <td className={`py-1 text-right ${save?.proficient ? 'font-semibold' : 'text-stone-500'}`}>
+                  <td className={`py-1 text-right ${save?.proficient ? 'font-semibold' : 'text-muted'}`}>
                     {save ? formatModifier(save.total) : '—'}
                   </td>
                 </tr>
@@ -151,13 +151,13 @@ export function Sheet({ character, ctx }: { character: Character; ctx: RulesCont
         {traits.length || background?.feature.name || classFeatures.length ? (
           <div className="grid gap-3 text-sm md:grid-cols-2">
             <div>
-              <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-stone-500">
+              <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-muted">
                 Ancestry
               </h3>
               {traits.map((trait) => (
                 <div key={trait.index} className="mb-2">
                   <div className="font-medium">{trait.name}</div>
-                  <p className="text-xs leading-relaxed text-stone-700">
+                  <p className="text-xs leading-relaxed text-body">
                     {trait.desc.join(' ')}
                   </p>
                 </div>
@@ -165,31 +165,31 @@ export function Sheet({ character, ctx }: { character: Character; ctx: RulesCont
             </div>
 
             <div>
-              <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-stone-500">
+              <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-muted">
                 Class Features
               </h3>
               {classFeatures.map(({ level, feature }) => (
                 <div key={`${level}-${feature.name}`} className="mb-2">
                   <div className="font-medium">
                     {feature.name}
-                    <span className="ml-2 text-xs font-normal text-stone-500">
+                    <span className="ml-2 text-xs font-normal text-muted">
                       level {level}
                     </span>
                   </div>
-                  <p className="text-xs leading-relaxed text-stone-700">
+                  <p className="text-xs leading-relaxed text-body">
                     {feature.desc.join(' ')}
                   </p>
                 </div>
               ))}
               {subclass?.features.length ? (
-                <div className="mt-2 rounded border border-stone-200 p-2">
-                  <div className="text-xs font-semibold uppercase text-stone-500">
+                <div className="mt-2 rounded border border-line-soft p-2">
+                  <div className="text-xs font-semibold uppercase text-muted">
                     {subclass.name}
                   </div>
                   {subclass.features.map((feature) => (
                     <div key={feature.name} className="mb-1">
                       <div className="font-medium">{feature.name}</div>
-                      <p className="text-xs leading-relaxed text-stone-700">
+                      <p className="text-xs leading-relaxed text-body">
                         {feature.desc.join(' ')}
                       </p>
                     </div>
@@ -200,18 +200,18 @@ export function Sheet({ character, ctx }: { character: Character; ctx: RulesCont
 
             {background?.feature.name ? (
               <div className="md:col-span-2">
-                <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-stone-500">
+                <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-muted">
                   Background Feature
                 </h3>
                 <div className="font-medium">{background.feature.name}</div>
-                <p className="text-xs leading-relaxed text-stone-700">
+                <p className="text-xs leading-relaxed text-body">
                   {background.feature.desc.join(' ')}
                 </p>
               </div>
             ) : null}
           </div>
         ) : (
-          <p className="text-sm text-stone-600">No features recorded yet.</p>
+          <p className="text-sm text-muted">No features recorded yet.</p>
         )}
       </Card>
 
@@ -233,7 +233,7 @@ export function Sheet({ character, ctx }: { character: Character; ctx: RulesCont
 
           <table className="mb-3 w-full text-sm">
             <thead>
-              <tr className="border-b border-stone-200 text-left text-xs uppercase text-stone-500">
+              <tr className="border-b border-line-soft text-left text-xs uppercase text-muted">
                 <th className="py-1">Slot level</th>
                 <th className="py-1 text-right">Total</th>
                 <th className="py-1 text-right">Remaining</th>
@@ -243,7 +243,7 @@ export function Sheet({ character, ctx }: { character: Character; ctx: RulesCont
               {Object.entries(sc.slots)
                 .filter(([, total]) => total > 0)
                 .map(([level, total]) => (
-                  <tr key={level} className="border-b border-stone-100">
+                  <tr key={level} className="border-b border-line-soft">
                     <td className="py-1">Level {level}</td>
                     <td className="py-1 text-right">{total}</td>
                     <td className="py-1 text-right">{d.slotsRemaining[Number(level)] ?? total}</td>
@@ -272,7 +272,7 @@ export function Sheet({ character, ctx }: { character: Character; ctx: RulesCont
       ) : null}
 
       <Card title="Equipment">
-        <div className="mb-2 flex gap-4 text-xs text-stone-600">
+        <div className="mb-2 flex gap-4 text-xs text-muted">
           <span>
             {d.inventory.weight.carried} / {d.inventory.weight.capacity} lb
             {d.inventory.weight.encumbered ? ' (encumbered)' : ''}
@@ -284,7 +284,7 @@ export function Sheet({ character, ctx }: { character: Character; ctx: RulesCont
         {rows.length ? (
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-stone-200 text-left text-xs uppercase text-stone-500">
+              <tr className="border-b border-line-soft text-left text-xs uppercase text-muted">
                 <th className="py-1">Item</th>
                 <th className="py-1">Type</th>
                 <th className="py-1 text-right">Qty</th>
@@ -294,7 +294,7 @@ export function Sheet({ character, ctx }: { character: Character; ctx: RulesCont
             </thead>
             <tbody>
               {rows.map((row) => (
-                <tr key={row.id} className="border-b border-stone-100">
+                <tr key={row.id} className="border-b border-line-soft">
                   <td className="py-1">
                     <Tip
                       text={row.desc.length ? row.desc.join('\n') : row.known ? null : 'Not in the System Reference Document; recorded as written.'}
@@ -302,7 +302,7 @@ export function Sheet({ character, ctx }: { character: Character; ctx: RulesCont
                       {row.name}
                     </Tip>
                   </td>
-                  <td className="py-1 text-xs uppercase text-stone-500">{row.kind}</td>
+                  <td className="py-1 text-xs uppercase text-muted">{row.kind}</td>
                   <td className="py-1 text-right">{row.entry.quantity}</td>
                   <td className="py-1 text-center">{row.entry.equipped ? '●' : ''}</td>
                   <td className="py-1 text-center">{row.entry.attuned ? '●' : ''}</td>
@@ -311,7 +311,7 @@ export function Sheet({ character, ctx }: { character: Character; ctx: RulesCont
             </tbody>
           </table>
         ) : (
-          <p className="text-sm text-stone-600">No equipment.</p>
+          <p className="text-sm text-muted">No equipment.</p>
         )}
       </Card>
 
@@ -330,8 +330,8 @@ export function Sheet({ character, ctx }: { character: Character; ctx: RulesCont
 
 function ProficiencyRow({ label, values }: { label: string; values: string[] }) {
   return (
-    <div className="border-b border-stone-100 py-1">
-      <dt className="text-xs font-semibold uppercase tracking-wide text-stone-500">{label}</dt>
+    <div className="border-b border-line-soft py-1">
+      <dt className="text-xs font-semibold uppercase tracking-wide text-muted">{label}</dt>
       <dd>{values.length ? values.join(', ') : '—'}</dd>
     </div>
   )
@@ -348,7 +348,7 @@ function SpellList({
 }) {
   return (
     <div className="mb-2">
-      <h3 className="text-xs font-semibold uppercase tracking-wide text-stone-500">{title}</h3>
+      <h3 className="text-xs font-semibold uppercase tracking-wide text-muted">{title}</h3>
       {indexes.length ? (
         <p className="text-sm">
           {indexes.map((index, i) => {
@@ -364,7 +364,7 @@ function SpellList({
           })}
         </p>
       ) : (
-        <p className="text-sm text-stone-600">None.</p>
+        <p className="text-sm text-muted">None.</p>
       )}
     </div>
   )

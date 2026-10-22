@@ -60,16 +60,16 @@ export function CombatBlock({ character, ctx }: { character: Character; ctx: Rul
     <>
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
         {stats.map((stat) => (
-          <div key={stat.label} className="rounded border border-stone-200 bg-white p-2 text-center">
-            <div className="text-[11px] uppercase tracking-wide text-stone-500">
+          <div key={stat.label} className="rounded border border-line-soft bg-night-2 p-2 text-center">
+            <div className="text-[11px] uppercase tracking-wide text-muted">
               <Tip text={stat.tip}>{stat.label}</Tip>
             </div>
-            <div className="text-xl font-bold">{stat.value}</div>
+            <div className="font-display text-2xl font-bold text-gold">{stat.value}</div>
           </div>
         ))}
       </div>
 
-      <p className="mt-2 text-sm text-stone-700">
+      <p className="mt-2 text-sm text-body">
         Hit dice:{' '}
         {d.combat.hitDice.byClass
           .map((entry) => `${entry.count}d${entry.die}`)
@@ -80,14 +80,14 @@ export function CombatBlock({ character, ctx }: { character: Character; ctx: Rul
 
       <div className="mt-3 grid gap-4 md:grid-cols-2">
         <div>
-          <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-stone-500">
+          <h3 className="label-caps mb-1">
             Saving Throws
           </h3>
           <ul className="grid grid-cols-2 gap-x-4 text-sm">
             {d.savingThrows.map((save) => (
-              <li key={save.ability} className="flex justify-between border-b border-stone-100 py-1">
+              <li key={save.ability} className="flex justify-between border-b border-line-soft py-1">
                 <span>{save.ability.toUpperCase()}</span>
-                <span className={save.proficient ? 'font-semibold' : 'text-stone-500'}>
+                <span className={save.proficient ? 'font-semibold' : 'text-muted'}>
                   {formatModifier(save.total)}
                   {save.proficient ? ' ●' : ''}
                 </span>
@@ -97,21 +97,21 @@ export function CombatBlock({ character, ctx }: { character: Character; ctx: Rul
         </div>
 
         <div>
-          <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-stone-500">
+          <h3 className="label-caps mb-1">
             Skills
           </h3>
           <ul className="grid grid-cols-2 gap-x-4 text-sm">
             {d.skills.map((skill) => (
               <li
                 key={skill.skill}
-                className="flex justify-between border-b border-stone-100 py-1"
+                className="flex justify-between border-b border-line-soft py-1"
               >
-                <span className={skill.proficient ? '' : 'text-stone-500'}>
+                <span className={skill.proficient ? '' : 'text-muted'}>
                   <Tip text={`${skill.ability.toUpperCase()} check; your ${skill.name} bonus.`}>
                     {skill.name}
                   </Tip>
                 </span>
-                <span className={skill.proficient ? 'font-semibold' : 'text-stone-500'}>
+                <span className={skill.proficient ? 'font-semibold' : 'text-muted'}>
                   {formatModifier(skill.total)}
                   {skill.proficient ? ' ●' : ''}
                 </span>
