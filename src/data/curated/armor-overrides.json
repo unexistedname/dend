@@ -1,0 +1,15 @@
+{
+  "source": "D&D 5e Player's Handbook (2014), Table 13: Armor, 'Strength (Str)' column",
+  "notes": [
+    "5e-SRD-Equipment.json disagrees with the PHB for three entries: it reports chain-mail Str 13 (PHB: 15), ring-mail Str 0 (PHB: 13), and half-plate-armor Str 0 (PHB: 13).",
+    "These overrides exist because Armour Class and carrying capacity both depend on the Strength requirement, so the SRD values would let a character illegally wear plate armour.",
+    "Only strMinimum is overridden; baseAC, dexBonus and stealthDisadvantage in the SRD match the PHB."
+  ],
+  "armor": {
+    "chain-mail": { "strMinimum": 15 },
+    "ring-mail": { "strMinimum": 13 },
+    "half-plate-armor": { "strMinimum": 13 },
+    "splint-armor": { "strMinimum": 15 },
+    "plate-armor": { "strMinimum": 15 }
+  }
+}

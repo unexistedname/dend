@@ -1,0 +1,197 @@
+{
+  "source": "D&D 5e DMG / PHB magic item descriptions",
+  "effects": {
+    "amulet-of-health": {
+      "abilities": {
+        "con": 19
+      },
+      "abilityCap": {
+        "con": 19
+      },
+      "note": "No effect if your Constitution is already 19 or higher."
+    },
+    "cloak-of-protection": {
+      "acBonus": 1,
+      "allSavesBonus": 1
+    },
+    "ring-of-protection": {
+      "acBonus": 1,
+      "allSavesBonus": 1
+    },
+    "ring-of-resistance-acid": {
+      "resistances": [
+        "acid"
+      ]
+    },
+    "ring-of-resistance-cold": {
+      "resistances": [
+        "cold"
+      ]
+    },
+    "ring-of-resistance-fire": {
+      "resistances": [
+        "fire"
+      ]
+    },
+    "ring-of-resistance-force": {
+      "resistances": [
+        "force"
+      ]
+    },
+    "ring-of-resistance-lightning": {
+      "resistances": [
+        "lightning"
+      ]
+    },
+    "ring-of-resistance-necrotic": {
+      "resistances": [
+        "necrotic"
+      ]
+    },
+    "ring-of-resistance-poison": {
+      "resistances": [
+        "poison"
+      ]
+    },
+    "ring-of-resistance-psychic": {
+      "resistances": [
+        "psychic"
+      ]
+    },
+    "ring-of-resistance-radiant": {
+      "resistances": [
+        "radiant"
+      ]
+    },
+    "ring-of-resistance-thunder": {
+      "resistances": [
+        "thunder"
+      ]
+    },
+    "boots-of-speed": {
+      "speedMultiplier": 2,
+      "note": "Doubles your walking speed while the effect lasts. It is not ended by taking damage: click your heels together again to end it, and the magic stops working after 10 minutes of use until you finish a long rest. Also grants disadvantage on attack rolls for opportunity attacks against you."
+    },
+    "boots-of-striding-and-springing": {
+      "speedSet": 30,
+      "note": "Walking speed becomes 30 feet unless your walking speed is already higher; your speed is not reduced by encumbrance or heavy armor."
+    },
+    "belt-of-giant-strength-hill": {
+      "abilities": {
+        "str": 21
+      },
+      "abilityCap": {
+        "str": 21
+      },
+      "note": "No effect if your Strength is already 21 or higher."
+    },
+    "belt-of-giant-strength-stone": {
+      "abilities": {
+        "str": 23
+      },
+      "abilityCap": {
+        "str": 23
+      },
+      "note": "No effect if your Strength is already 23 or higher."
+    },
+    "belt-of-giant-strength-frost": {
+      "abilities": {
+        "str": 25
+      },
+      "abilityCap": {
+        "str": 25
+      },
+      "note": "No effect if your Strength is already 25 or higher."
+    },
+    "belt-of-giant-strength-fire": {
+      "abilities": {
+        "str": 25
+      },
+      "abilityCap": {
+        "str": 25
+      },
+      "note": "No effect if your Strength is already 25 or higher."
+    },
+    "belt-of-giant-strength-cloud": {
+      "abilities": {
+        "str": 27
+      },
+      "abilityCap": {
+        "str": 27
+      },
+      "note": "No effect if your Strength is already 27 or higher."
+    },
+    "belt-of-giant-strength-storm": {
+      "abilities": {
+        "str": 29
+      },
+      "abilityCap": {
+        "str": 29
+      },
+      "note": "No effect if your Strength is already 29 or higher."
+    },
+    "gauntlets-of-ogre-power": {
+      "abilities": {
+        "str": 19
+      },
+      "abilityCap": {
+        "str": 19
+      },
+      "note": "No effect if your Strength is already 19 or higher."
+    },
+    "headband-of-intellect": {
+      "abilities": {
+        "int": 19
+      },
+      "abilityCap": {
+        "int": 19
+      },
+      "note": "No effect if your Intelligence is already 19 or higher."
+    },
+    "ioun-stone-of-agility": {
+      "abilities": {
+        "dex": 21
+      },
+      "note": "While the stone orbits your head, your Dexterity score becomes 21. This is a set value, not a bonus, so the 20 score cap does not apply to it."
+    },
+    "ioun-stone-of-awareness": {
+      "abilities": {
+        "wis": 21
+      },
+      "note": "While the stone orbits your head, your Wisdom score becomes 21. This is a set value, not a bonus, so the 20 score cap does not apply to it."
+    },
+    "ioun-stone-of-fortitude": {
+      "abilities": {
+        "con": 21
+      },
+      "note": "While the stone orbits your head, your Constitution score becomes 21. This is a set value, not a bonus, so the 20 score cap does not apply to it."
+    },
+    "ioun-stone-of-insight": {
+      "abilities": {
+        "int": 21
+      },
+      "note": "While the stone orbits your head, your Intelligence score becomes 21. This is a set value, not a bonus, so the 20 score cap does not apply to it."
+    },
+    "ioun-stone-of-leadership": {
+      "abilities": {
+        "cha": 21
+      },
+      "note": "While the stone orbits your head, your Charisma score becomes 21. This is a set value, not a bonus, so the 20 score cap does not apply to it."
+    },
+    "ioun-stone-of-protection": {
+      "acBonus": 1
+    }
+  },
+  "notes": [
+    "Every key is the SRD 5e magic item 'index' and was verified against src/data/srd/5e-SRD-Magic-Items.json. All items require attunement (except where noted) and the effect applies only while worn, except the Ioun stones, which apply while the stone orbits your head.",
+    "Effect keys used: abilities, abilityCap, acBonus, allSavesBonus, speedMultiplier, plus speedSet (boots-of-striding-and-springing) and resistances (the ten ring-of-resistance elemental variants).",
+    "abilityCap mirrors an item's own 'no effect if your score is already X or higher' clause, so the consumer must not lower a higher natural score.",
+    "Excluded - ring-of-resistance (base item): its own text grants resistance to one damage type that the GM chooses or determines randomly from its d10 gem table, so it cannot be keyed to a fixed resistance. Use the ten elemental variants instead.",
+    "Excluded - gloves-of-ogre-power: no such index exists in the SRD (only gauntlets-of-ogre-power, included above).",
+    "Excluded - ioun-stone-of-resistance: no such index exists in the SRD, and 5e has no Ioun stone that grants a bonus to saving throws.",
+    "Excluded - ioun-stone-of-absorption and ioun-stone-of-mastery: their PHB effects are a reaction to cancel a spell of 4th level or lower and a +1 proficiency bonus respectively - neither is an AC, save, speed or ability-score change, so neither is representable with the recognised keys.",
+    "Excluded - ioun-stone-of-strength and ioun-stone-of-intellect: DMG stones that raise a score by 2 to a maximum of 20 rather than setting it, which the 'abilities' key does not model.",
+    "Excluded - boots-of-the-winterlands, pearl-of-power and the rest of the magic item list: they change no derived statistic this file can express (the winterlands boots do grant resistance to cold damage plus terrain and temperature immunities).",
+    "SRD text caution: the descriptions stored for the Ioun stones are inconsistent with the PHB 2014. The values here follow the PHB 2014 (Dex 21, Wis 21, Con 21, Int 21, Cha 21). In 5e-SRD-Magic-Items.json ioun-stone-of-insight is described as raising Wisdom by 2, ioun-stone-of-awareness as preventing surprise, and ioun-stone-of-agility/fortitude/leadership as raising a score by 2 to a maximum of 20."
+  ]
+}

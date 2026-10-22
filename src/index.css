@@ -1,0 +1,40 @@
+@import 'tailwindcss';
+
+/* Character-sheet palette: warm paper, dark ink, one accent. */
+@theme {
+  --color-paper: #f7f3ec;
+  --color-ink: #23201c;
+  --color-accent: #8a2b2b;
+}
+
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+}
+
+/* Dotted underline marks anything with a rulebook tooltip on hover. */
+.tip {
+  cursor: help;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+}
+
+@media print {
+  /* Only the sheet prints; chrome is hidden. */
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+  }
+
+  .print-page {
+    break-inside: avoid;
+  }
+}

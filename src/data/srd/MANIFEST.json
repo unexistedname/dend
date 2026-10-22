@@ -1,0 +1,88 @@
+{
+  "source": "https://github.com/5e-bits/5e-database",
+  "commit": "a6212beb4b278917c2cff41c2b04c4ef4f3e0d6f",
+  "path": "src/2014/en",
+  "licence": "CC-BY-4.0 (Dungeons & Dragons System Reference Document 5.1)",
+  "files": [
+    {
+      "name": "5e-SRD-Ability-Scores.json",
+      "sha256_12": "23f08ea89e30"
+    },
+    {
+      "name": "5e-SRD-Alignments.json",
+      "sha256_12": "c0c8c01dc90e"
+    },
+    {
+      "name": "5e-SRD-Backgrounds.json",
+      "sha256_12": "f98c556f1b84"
+    },
+    {
+      "name": "5e-SRD-Classes.json",
+      "sha256_12": "2c2795733d45"
+    },
+    {
+      "name": "5e-SRD-Conditions.json",
+      "sha256_12": "8e589819653f"
+    },
+    {
+      "name": "5e-SRD-Damage-Types.json",
+      "sha256_12": "c4b9f397e551"
+    },
+    {
+      "name": "5e-SRD-Equipment.json",
+      "sha256_12": "b4a6c1c2167a"
+    },
+    {
+      "name": "5e-SRD-Features.json",
+      "sha256_12": "2e470aae87f9"
+    },
+    {
+      "name": "5e-SRD-Languages.json",
+      "sha256_12": "f9661ec5a01c"
+    },
+    {
+      "name": "5e-SRD-Levels.json",
+      "sha256_12": "ea6a58268f26"
+    },
+    {
+      "name": "5e-SRD-Magic-Items.json",
+      "sha256_12": "9a6f928cbf36"
+    },
+    {
+      "name": "5e-SRD-Magic-Schools.json",
+      "sha256_12": "9901d0934c16"
+    },
+    {
+      "name": "5e-SRD-Proficiencies.json",
+      "sha256_12": "60127a2130a5"
+    },
+    {
+      "name": "5e-SRD-Races.json",
+      "sha256_12": "75e6e99c3181"
+    },
+    {
+      "name": "5e-SRD-Skills.json",
+      "sha256_12": "09f42a2d3e3d"
+    },
+    {
+      "name": "5e-SRD-Spells.json",
+      "sha256_12": "cc8f32886d78"
+    },
+    {
+      "name": "5e-SRD-Subclasses.json",
+      "sha256_12": "b3502390228f"
+    },
+    {
+      "name": "5e-SRD-Subraces.json",
+      "sha256_12": "13f6917a7f52"
+    },
+    {
+      "name": "5e-SRD-Traits.json",
+      "sha256_12": "1018aa76f7d5"
+    },
+    {
+      "name": "5e-SRD-Weapon-Properties.json",
+      "sha256_12": "223548f2d20d"
+    }
+  ]
+}

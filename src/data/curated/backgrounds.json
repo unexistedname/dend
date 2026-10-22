@@ -1,0 +1,317 @@
+{
+  "source": "D&D 5e Player's Handbook (2014), p. 127-141; SRD 5.1 indexes used wherever a local reference exists",
+  "notes": [
+    "These are the 12 PHB (2014) backgrounds missing from 5e-SRD-Backgrounds.json, which already contains the acolyte. There is no index collision.",
+    "`languages` is the number of languages granted BEYOND the one every character already knows; it is 0 when the PHB says 'Languages: None'.",
+    "`skillProficiencies` uses `skill-<slug>` indexes from 5e-SRD-Skills.json.",
+    "`toolProficiencies` uses 5e-SRD-Proficiencies.json indexes when one exists. The PHB's 'one of your choice' tool grants (gaming set, artisan's tools, musical instrument) have no single SRD index and are recorded as plain strings.",
+    "The 2014 PHB language grants are: Charlatan 0, Criminal 0, Entertainer 0, Folk Hero 0, Guild Artisan 1, Hermit 1, Knight 1, Noble 1, Sage 2, Sailor 0, Soldier 0, Urchin 0. (Acolyte 2 comes from the SRD entry.)",
+    "Feature names are the background-table feature names as printed in the 2014 PHB, not the variant-feature names used by most wikis (for example the PHB prints 'Soldier' and 'Urchin', whose variants are 'Military Rank' and 'City Secrets'; the PHB prints 'Sailor R.P.G.', whose variant is 'Ship's Passage').",
+    "Feature text is intentionally omitted: `desc` is empty and `featureTextAvailable` is false.",
+    "`startingGold` is the gold in the background's pouch or purse, not the total value of the starting equipment.",
+    "Charlatan and Criminal list 'tools of the con of your choice' and 'one type of gaming set' as descriptive strings because the SRD has no index for them.",
+    "Outlander was removed: it is from Eberron: The Calling (Forge of Foes), not the 2014 PHB."
+  ],
+  "backgrounds": [
+    {
+      "index": "charlatan",
+      "name": "Charlatan",
+      "skillProficiencies": [
+        "skill-deception",
+        "skill-sleight-of-hand"
+      ],
+      "toolProficiencies": [
+        "disguise-kit",
+        "forgery-kit"
+      ],
+      "languages": 0,
+      "equipment": [
+        "A set of fine clothes",
+        "A disguise kit",
+        "Tools of the con of your choice",
+        "A pouch"
+      ],
+      "startingGold": 15,
+      "feature": {
+        "name": "False Identity",
+        "desc": [],
+        "featureTextAvailable": false
+      }
+    },
+    {
+      "index": "criminal",
+      "name": "Criminal",
+      "skillProficiencies": [
+        "skill-deception",
+        "skill-stealth"
+      ],
+      "toolProficiencies": [
+        "One type of gaming set",
+        "thieves-tools"
+      ],
+      "languages": 0,
+      "equipment": [
+        "A crowbar",
+        "A set of dark common clothes including a hood",
+        "A pouch"
+      ],
+      "startingGold": 15,
+      "feature": {
+        "name": "Criminal Contact",
+        "desc": [],
+        "featureTextAvailable": false
+      }
+    },
+    {
+      "index": "entertainer",
+      "name": "Entertainer",
+      "skillProficiencies": [
+        "skill-acrobatics",
+        "skill-performance"
+      ],
+      "toolProficiencies": [
+        "disguise-kit",
+        "One type of musical instrument"
+      ],
+      "languages": 0,
+      "equipment": [
+        "A musical instrument of your choice",
+        "The favor of an admirer (a love letter, lock of hair, or trinket)",
+        "A costume",
+        "A pouch"
+      ],
+      "startingGold": 15,
+      "feature": {
+        "name": "By Popular Demand",
+        "desc": [],
+        "featureTextAvailable": false
+      }
+    },
+    {
+      "index": "folk-hero",
+      "name": "Folk Hero",
+      "skillProficiencies": [
+        "skill-animal-handling",
+        "skill-survival"
+      ],
+      "toolProficiencies": [
+        "One type of artisan's tools",
+        "land-vehicles"
+      ],
+      "languages": 0,
+      "equipment": [
+        "A set of artisan's tools of your choice",
+        "A shovel",
+        "An iron pot",
+        "A set of common clothes",
+        "A pouch"
+      ],
+      "startingGold": 10,
+      "feature": {
+        "name": "Rustic Charm",
+        "desc": [],
+        "featureTextAvailable": false
+      }
+    },
+    {
+      "index": "guild-artisan",
+      "name": "Guild Artisan",
+      "skillProficiencies": [
+        "skill-insight",
+        "skill-persuasion"
+      ],
+      "toolProficiencies": [
+        "One type of artisan's tools"
+      ],
+      "languages": 1,
+      "equipment": [
+        "A set of artisan's tools of your choice",
+        "A letter of introduction from your guild",
+        "A set of traveler's clothes",
+        "A pouch"
+      ],
+      "startingGold": 15,
+      "feature": {
+        "name": "Guild Artisan",
+        "desc": [],
+        "featureTextAvailable": false
+      }
+    },
+    {
+      "index": "hermit",
+      "name": "Hermit",
+      "skillProficiencies": [
+        "skill-medicine",
+        "skill-religion"
+      ],
+      "toolProficiencies": [
+        "herbalism-kit"
+      ],
+      "languages": 1,
+      "equipment": [
+        "A scroll case stuffed full of notes from your studies or prayers",
+        "A winter blanket",
+        "A set of common clothes",
+        "An herbalism kit"
+      ],
+      "startingGold": 5,
+      "feature": {
+        "name": "Hermit",
+        "desc": [],
+        "featureTextAvailable": false
+      }
+    },
+    {
+      "index": "knight",
+      "name": "Knight",
+      "skillProficiencies": [
+        "skill-animal-handling",
+        "skill-athletics"
+      ],
+      "toolProficiencies": [
+        "One type of gaming set",
+        "heavy-armor"
+      ],
+      "languages": 1,
+      "equipment": [
+        "A set of fine clothes",
+        "A signet ring",
+        "A scroll of pedigree",
+        "A purse"
+      ],
+      "startingGold": 25,
+      "feature": {
+        "name": "Battle Retribution",
+        "desc": [],
+        "featureTextAvailable": false
+      }
+    },
+    {
+      "index": "noble",
+      "name": "Noble",
+      "skillProficiencies": [
+        "skill-history",
+        "skill-persuasion"
+      ],
+      "toolProficiencies": [
+        "One type of gaming set"
+      ],
+      "languages": 1,
+      "equipment": [
+        "A set of fine clothes",
+        "A signet ring",
+        "A scroll of pedigree",
+        "A purse"
+      ],
+      "startingGold": 25,
+      "feature": {
+        "name": "Position of Privilege",
+        "desc": [],
+        "featureTextAvailable": false
+      }
+    },
+    {
+      "index": "sage",
+      "name": "Sage",
+      "skillProficiencies": [
+        "skill-arcana",
+        "skill-history"
+      ],
+      "toolProficiencies": [],
+      "languages": 2,
+      "equipment": [
+        "A bottle of ink",
+        "A quill",
+        "A small knife",
+        "A letter from a dead colleague posing a question you have not yet been able to answer",
+        "A set of common clothes",
+        "A pouch"
+      ],
+      "startingGold": 10,
+      "feature": {
+        "name": "Researcher",
+        "desc": [],
+        "featureTextAvailable": false
+      }
+    },
+    {
+      "index": "sailor",
+      "name": "Sailor",
+      "skillProficiencies": [
+        "skill-athletics",
+        "skill-perception"
+      ],
+      "toolProficiencies": [
+        "navigators-tools",
+        "water-vehicles"
+      ],
+      "languages": 0,
+      "equipment": [
+        "A belaying pin (club)",
+        "50 feet of silk rope",
+        "A lucky charm",
+        "A set of common clothes",
+        "A pouch"
+      ],
+      "startingGold": 10,
+      "feature": {
+        "name": "Sailor R.P.G.",
+        "desc": [],
+        "featureTextAvailable": false
+      }
+    },
+    {
+      "index": "soldier",
+      "name": "Soldier",
+      "skillProficiencies": [
+        "skill-athletics",
+        "skill-intimidation"
+      ],
+      "toolProficiencies": [
+        "One type of gaming set",
+        "land-vehicles"
+      ],
+      "languages": 0,
+      "equipment": [
+        "An insignia of rank",
+        "A trophy taken from a fallen enemy (a dagger, broken blade, or piece of a banner)",
+        "A set of bone dice or a deck of cards",
+        "A set of common clothes",
+        "A pouch"
+      ],
+      "startingGold": 10,
+      "feature": {
+        "name": "Soldier",
+        "desc": [],
+        "featureTextAvailable": false
+      }
+    },
+    {
+      "index": "urchin",
+      "name": "Urchin",
+      "skillProficiencies": [
+        "skill-sleight-of-hand",
+        "skill-stealth"
+      ],
+      "toolProficiencies": [
+        "disguise-kit",
+        "thieves-tools"
+      ],
+      "languages": 0,
+      "equipment": [
+        "A small knife",
+        "A map of the city you grew up in",
+        "A pet mouse",
+        "A token to remember your parents by",
+        "A set of common clothes",
+        "A pouch"
+      ],
+      "startingGold": 10,
+      "feature": {
+        "name": "Urchin",
+        "desc": [],
+        "featureTextAvailable": false
+      }
+    }
+  ]
+}

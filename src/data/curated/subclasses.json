@@ -1,0 +1,1100 @@
+{
+  "source": "D&D 5e Player's Handbook (2014); spell grants cross-checked against SRD 5.1",
+  "notes": [
+    "Spell grants follow the 2014 Player's Handbook; every `spells` entry is an `index` from 5e-SRD-Spells.json.",
+    "PHB spells absent from the local SRD 5.1 file were omitted and are listed in the final report.",
+    "Scope is the 2014 Player's Handbook plus its SRD: all 40 PHB subclasses and nothing else. Xanathar's Guide and Sword Coast Adventurer's Guide subclasses (Hexblade, Celestial, Divine Soul, College of Glamour, College of Whispers, Path of the Zealot, Rogue Scout) are excluded, as is all Tasha's Cauldron content (Circle of the Sea, Circle of Wildfire, Circle of Grove, Oath of the Watchers, Soulknife).",
+    "The 2014 PHB grants no bonus spells to Eldritch Knight or College of Lore; both instead learn spells of choice from their own class tables, so only their cantrip grants are recorded.",
+    "Light Domain's bonus cantrip is the fixed `light` cantrip, not a choice of three cleric cantrips.",
+    "Circle of the Land spells are the union of the seven 2014 PHB land types (arctic, coast, desert, forest, grassland, mountain, swamp); the Underdark land type is from a later printing and is excluded.",
+    "Warlock patron expanded lists are keyed to warlock levels 1/3/5/7/9, the levels at which 1st-5th level spell slots become available.",
+    "Warlock patron names use the PHB form ('The Archfey'); their `index` slugs omit the leading article to match 5e-SRD-Subclasses.json.",
+    "Path of the Totem Warrior was missing from the original curation; it is a 2014 PHB subclass and is added for completeness.",
+    "Path of the Totem Warrior prepares from the barbarian spell list at Totem Warrior level + Barbarian level, so its grants are not tied to a fixed table position; the entries above record the PHB list by spell level.",
+    "Beast Master was missing from the original curation; it is a 2014 PHB subclass and is added for completeness."
+  ],
+  "subclasses": [
+    {
+      "index": "path-of-the-berserker",
+      "name": "Path of the Berserker",
+      "classIndex": "barbarian",
+      "level": 3,
+      "flavor": "For some barbarians, rage is enough. The Path of the Berserker channels that fury into a relentless warrior who never retreats. Where others hesitate, the berserker presses on, and the sight of a whirling axe and a roaring war cry is often the last thing an enemy sees.",
+      "spellGrants": [],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "path-of-the-totem-warrior",
+      "name": "Path of the Totem Warrior",
+      "classIndex": "barbarian",
+      "level": 3,
+      "flavor": "A totem warrior binds their spirit to an animal spirit, wearing its shape as a ritual armour of power. They do not conjure spirits; they carry one, and it lends them its instincts, its reach and its favour.",
+      "spellGrants": [
+        {
+          "minClassLevel": 1,
+          "spells": [
+            "animal-friendship",
+            "charm-person",
+            "detect-magic",
+            "detect-poison-and-disease",
+            "healing-word",
+            "protection-from-evil-and-good",
+            "thunderwave"
+          ]
+        },
+        {
+          "minClassLevel": 2,
+          "spells": [
+            "aid",
+            "animal-messenger",
+            "calm-emotions",
+            "gust-of-wind",
+            "hold-person",
+            "moonbeam",
+            "spiritual-weapon",
+            "heat-metal"
+          ]
+        },
+        {
+          "minClassLevel": 3,
+          "spells": [
+            "call-lightning",
+            "protection-from-energy",
+            "remove-curse",
+            "revivify",
+            "spirit-guardians"
+          ]
+        },
+        {
+          "minClassLevel": 4,
+          "spells": [
+            "control-water",
+            "ice-storm",
+            "polymorph"
+          ]
+        },
+        {
+          "minClassLevel": 5,
+          "spells": [
+            "commune-with-nature",
+            "cone-of-cold",
+            "flame-strike",
+            "lightning-bolt",
+            "raise-dead",
+            "wall-of-stone"
+          ]
+        },
+        {
+          "minClassLevel": 6,
+          "spells": [
+            "earthquake",
+            "heal",
+            "sunbeam",
+            "wall-of-fire"
+          ]
+        },
+        {
+          "minClassLevel": 7,
+          "spells": [
+            "animate-objects",
+            "control-weather",
+            "fire-storm",
+            "plane-shift"
+          ]
+        },
+        {
+          "minClassLevel": 8,
+          "spells": [
+            "control-weather",
+            "dominate-monster",
+            "incendiary-cloud",
+            "sunburst"
+          ]
+        },
+        {
+          "minClassLevel": 9,
+          "spells": [
+            "control-weather",
+            "mass-heal",
+            "meteor-swarm",
+            "power-word-kill",
+            "time-stop"
+          ]
+        }
+      ],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "college-of-lore",
+      "name": "College of Lore",
+      "classIndex": "bard",
+      "level": 3,
+      "flavor": "Bards of the College of Lore are archaeologists, historians, and dreamers who catalogue the tales of the world. They prize knowledge above all, and their wide travels make them collectors of magic as well as stories.",
+      "spellGrants": [],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "college-of-valor",
+      "name": "College of Valor",
+      "classIndex": "bard",
+      "level": 3,
+      "flavor": "Bards of the College of Valor are daring skalds whose tales spur the hearts of the bold. They roam the world singing of great deeds, and their courage and strong constitutions have long been a model for would-be adventurers.",
+      "spellGrants": [],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "knowledge",
+      "name": "Knowledge",
+      "classIndex": "cleric",
+      "level": 1,
+      "flavor": "The gods of knowledge value learning and the pursuit of truth. Clerics of the Knowledge domain study scripture and lore, interrogate the nature of the universe, and pierce the veil of secrecy to expose what lies behind it.",
+      "spellGrants": [
+        {
+          "minClassLevel": 1,
+          "spells": [
+            "command",
+            "identify"
+          ]
+        },
+        {
+          "minClassLevel": 3,
+          "spells": [
+            "augury",
+            "suggestion"
+          ]
+        },
+        {
+          "minClassLevel": 5,
+          "spells": [
+            "nondetection",
+            "speak-with-dead"
+          ]
+        },
+        {
+          "minClassLevel": 7,
+          "spells": [
+            "arcane-eye",
+            "confusion"
+          ]
+        },
+        {
+          "minClassLevel": 9,
+          "spells": [
+            "legend-lore",
+            "scrying"
+          ]
+        }
+      ],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "life",
+      "name": "Life",
+      "classIndex": "cleric",
+      "level": 1,
+      "flavor": "The Life domain focuses on the vibrant force of life that sustains all living things. Clerics of this domain are menders of wounds and wardens of health, and their magic knits flesh, restores vigour, and defies death itself.",
+      "spellGrants": [
+        {
+          "minClassLevel": 1,
+          "spells": [
+            "bless",
+            "cure-wounds"
+          ]
+        },
+        {
+          "minClassLevel": 3,
+          "spells": [
+            "lesser-restoration",
+            "spiritual-weapon"
+          ]
+        },
+        {
+          "minClassLevel": 5,
+          "spells": [
+            "beacon-of-hope",
+            "revivify"
+          ]
+        },
+        {
+          "minClassLevel": 7,
+          "spells": [
+            "death-ward",
+            "guardian-of-faith"
+          ]
+        },
+        {
+          "minClassLevel": 9,
+          "spells": [
+            "mass-cure-wounds",
+            "raise-dead"
+          ]
+        }
+      ],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "light",
+      "name": "Light",
+      "classIndex": "cleric",
+      "level": 1,
+      "flavor": "Clerics of the Light domain wield the radiance of the sun, moon, and stars. They are shepherds of the dark places, and their wards of light burn away shadow, uncover hidden things, and sear the minions of undeath.",
+      "spellGrants": [
+        {
+          "cantrip": true,
+          "spells": [
+            "light"
+          ]
+        },
+        {
+          "minClassLevel": 1,
+          "spells": [
+            "burning-hands",
+            "faerie-fire"
+          ]
+        },
+        {
+          "minClassLevel": 3,
+          "spells": [
+            "flaming-sphere",
+            "scorching-ray"
+          ]
+        },
+        {
+          "minClassLevel": 5,
+          "spells": [
+            "daylight",
+            "fireball"
+          ]
+        },
+        {
+          "minClassLevel": 7,
+          "spells": [
+            "guardian-of-faith",
+            "wall-of-fire"
+          ]
+        },
+        {
+          "minClassLevel": 9,
+          "spells": [
+            "flame-strike",
+            "scrying"
+          ]
+        }
+      ],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "nature",
+      "name": "Nature",
+      "classIndex": "cleric",
+      "level": 1,
+      "flavor": "Nature is filled with divine power: the power of growth, of renewal, of the untamed wild. Clerics of the Nature domain draw on that power to mend the wounds of the land and to nurture, heal, and protect the natural world.",
+      "spellGrants": [
+        {
+          "cantrip": true,
+          "choose": 1,
+          "spellList": "druid",
+          "spells": [
+            "druidcraft",
+            "guidance",
+            "mending",
+            "poison-spray",
+            "produce-flame",
+            "resistance",
+            "shillelagh"
+          ]
+        },
+        {
+          "minClassLevel": 1,
+          "spells": [
+            "animal-friendship",
+            "speak-with-animals"
+          ]
+        },
+        {
+          "minClassLevel": 3,
+          "spells": [
+            "barkskin",
+            "spike-growth"
+          ]
+        },
+        {
+          "minClassLevel": 5,
+          "spells": [
+            "plant-growth",
+            "wind-wall"
+          ]
+        },
+        {
+          "minClassLevel": 7,
+          "spells": [
+            "dominate-beast"
+          ]
+        },
+        {
+          "minClassLevel": 9,
+          "spells": [
+            "insect-plague",
+            "tree-stride"
+          ]
+        }
+      ],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "tempest",
+      "name": "Tempest",
+      "classIndex": "cleric",
+      "level": 1,
+      "flavor": "The air crackles with lightning and the sky darkens with the promise of storm. Clerics of the Tempest domain command the fury of the weather, calling down thunder and tempests that scatter foes and shake the earth.",
+      "spellGrants": [
+        {
+          "minClassLevel": 1,
+          "spells": [
+            "fog-cloud",
+            "thunderwave"
+          ]
+        },
+        {
+          "minClassLevel": 3,
+          "spells": [
+            "gust-of-wind",
+            "shatter"
+          ]
+        },
+        {
+          "minClassLevel": 5,
+          "spells": [
+            "call-lightning",
+            "sleet-storm"
+          ]
+        },
+        {
+          "minClassLevel": 7,
+          "spells": [
+            "control-water",
+            "ice-storm"
+          ]
+        },
+        {
+          "minClassLevel": 9,
+          "spells": [
+            "insect-plague"
+          ]
+        }
+      ],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "trickery",
+      "name": "Trickery",
+      "classIndex": "cleric",
+      "level": 1,
+      "flavor": "Clerics of the Trickery domain are devotees of trickery gods and use deception and manipulation in service of their deities. Whether through charm, illusion, or outright deceit, they exploit every crack in an enemy armour.",
+      "spellGrants": [
+        {
+          "minClassLevel": 1,
+          "spells": [
+            "charm-person",
+            "disguise-self"
+          ]
+        },
+        {
+          "minClassLevel": 3,
+          "spells": [
+            "mirror-image",
+            "pass-without-trace"
+          ]
+        },
+        {
+          "minClassLevel": 5,
+          "spells": [
+            "blink",
+            "dispel-magic"
+          ]
+        },
+        {
+          "minClassLevel": 7,
+          "spells": [
+            "dimension-door",
+            "polymorph"
+          ]
+        },
+        {
+          "minClassLevel": 9,
+          "spells": [
+            "dominate-person",
+            "modify-memory"
+          ]
+        }
+      ],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "war",
+      "name": "War",
+      "classIndex": "cleric",
+      "level": 1,
+      "flavor": "War has many forms, and the War domain reflects them all. Clerics of this domain are competent warriors who inspire their allies and strike down the enemies of their faith with sword, flame, and unshakable conviction.",
+      "spellGrants": [
+        {
+          "minClassLevel": 1,
+          "spells": [
+            "divine-favor",
+            "shield-of-faith"
+          ]
+        },
+        {
+          "minClassLevel": 3,
+          "spells": [
+            "magic-weapon",
+            "spiritual-weapon"
+          ]
+        },
+        {
+          "minClassLevel": 5,
+          "spells": [
+            "spirit-guardians"
+          ]
+        },
+        {
+          "minClassLevel": 7,
+          "spells": [
+            "freedom-of-movement",
+            "stoneskin"
+          ]
+        },
+        {
+          "minClassLevel": 9,
+          "spells": [
+            "flame-strike",
+            "hold-monster"
+          ]
+        }
+      ],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "circle-of-the-land",
+      "name": "Circle of the Land",
+      "classIndex": "druid",
+      "level": 2,
+      "flavor": "The Circle of the Land druids are guardians of the wilds, bonded to a particular terrain that shapes their magic. Their circle spells come from the land they call home, from the frozen tundra to the reeking swamp.",
+      "spellGrants": [
+        {
+          "cantrip": true,
+          "choose": 1,
+          "spellList": "druid",
+          "spells": [
+            "druidcraft",
+            "guidance",
+            "mending",
+            "poison-spray",
+            "produce-flame",
+            "resistance",
+            "shillelagh"
+          ]
+        },
+        {
+          "minClassLevel": 3,
+          "spells": [
+            "acid-arrow",
+            "barkskin",
+            "blur",
+            "darkness",
+            "hold-person",
+            "invisibility",
+            "mirror-image",
+            "misty-step",
+            "pass-without-trace",
+            "silence",
+            "spider-climb",
+            "spike-growth"
+          ]
+        },
+        {
+          "minClassLevel": 5,
+          "spells": [
+            "call-lightning",
+            "create-food-and-water",
+            "daylight",
+            "haste",
+            "lightning-bolt",
+            "meld-into-stone",
+            "plant-growth",
+            "protection-from-energy",
+            "sleet-storm",
+            "slow",
+            "stinking-cloud",
+            "water-breathing",
+            "water-walk"
+          ]
+        },
+        {
+          "minClassLevel": 7,
+          "spells": [
+            "blight",
+            "control-water",
+            "divination",
+            "freedom-of-movement",
+            "hallucinatory-terrain",
+            "ice-storm",
+            "locate-creature",
+            "stone-shape",
+            "stoneskin"
+          ]
+        },
+        {
+          "minClassLevel": 9,
+          "spells": [
+            "commune-with-nature",
+            "cone-of-cold",
+            "conjure-elemental",
+            "dream",
+            "insect-plague",
+            "passwall",
+            "scrying",
+            "tree-stride",
+            "wall-of-stone"
+          ]
+        }
+      ],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "circle-of-the-moon",
+      "name": "Circle of the Moon",
+      "classIndex": "druid",
+      "level": 2,
+      "flavor": "Circle of the Moon druids are fierce guardians of the wilds, mastering the forms of their totemic creatures. They channel the potency of their lunar power into mighty transformations and relentless savagery.",
+      "spellGrants": [],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "battle-master",
+      "name": "Battle Master",
+      "classIndex": "fighter",
+      "level": 3,
+      "flavor": "The Battle Master archetype emphasises martial versatility, improvising attacks and using an opponent strength against them. A Battle Master is a precise executor of tactics, turning a single moment into a decisive advantage.",
+      "spellGrants": [],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "champion",
+      "name": "Champion",
+      "classIndex": "fighter",
+      "level": 3,
+      "flavor": "The Champion archetype focuses on the development of raw physical power honed to deadly perfection. A Champion is a master of martial combat, whose blows land with uncanny accuracy and whose body shrugs off harm.",
+      "spellGrants": [],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "eldritch-knight",
+      "name": "Eldritch Knight",
+      "classIndex": "fighter",
+      "level": 3,
+      "flavor": "The archetypal Eldritch Knight combines martial mastery with a careful study of magic. Knights focus on two schools of magic, abjuration and evocation, weaving warding magic into their defence and blasting spells into their blades.",
+      "spellGrants": [
+        {
+          "cantrip": true,
+          "choose": 2,
+          "spellList": "wizard",
+          "spells": [
+            "acid-splash",
+            "chill-touch",
+            "dancing-lights",
+            "fire-bolt",
+            "light",
+            "mage-hand",
+            "mending",
+            "message",
+            "minor-illusion",
+            "poison-spray",
+            "prestidigitation",
+            "ray-of-frost",
+            "shocking-grasp",
+            "true-strike"
+          ]
+        }
+      ],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "way-of-shadow",
+      "name": "Way of Shadow",
+      "classIndex": "monk",
+      "level": 3,
+      "flavor": "Monks of the Way of Shadow follow a tradition that values stealth and subterfuge. They slip unseen through the world, striking from concealment and using shadow itself as a willing ally.",
+      "spellGrants": [],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "way-of-the-four-elements",
+      "name": "Way of the Four Elements",
+      "classIndex": "monk",
+      "level": 3,
+      "flavor": "Monks of the Way of the Four Elements are masters of their martial discipline, striking with elemental force. Their techniques focus their ki into blasts of searing flame, chilling frost, crackling lightning, or rushing water.",
+      "spellGrants": [],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "way-of-the-open-hand",
+      "name": "Way of the Open Hand",
+      "classIndex": "monk",
+      "level": 3,
+      "flavor": "Monks of the Way of the Open Hand are the ultimate masters of martial arts combat, armed and unarmed. They learn to turn an attacker momentum against them and to find the precise moment to strike.",
+      "spellGrants": [],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "oath-of-devotion",
+      "name": "Oath of Devotion",
+      "classIndex": "paladin",
+      "level": 3,
+      "flavor": "The Oath of Devotion binds a paladin to the loftiest ideals of justice, virtue, and order. The prototypical paladin, these knights are the willing sword of their gods, sworn to protect the innocent and uphold their cause.",
+      "spellGrants": [
+        {
+          "minClassLevel": 3,
+          "spells": [
+            "protection-from-evil-and-good",
+            "sanctuary"
+          ]
+        },
+        {
+          "minClassLevel": 5,
+          "spells": [
+            "lesser-restoration",
+            "zone-of-truth"
+          ]
+        },
+        {
+          "minClassLevel": 9,
+          "spells": [
+            "beacon-of-hope",
+            "dispel-magic"
+          ]
+        },
+        {
+          "minClassLevel": 13,
+          "spells": [
+            "freedom-of-movement",
+            "guardian-of-faith"
+          ]
+        },
+        {
+          "minClassLevel": 17,
+          "spells": [
+            "commune",
+            "flame-strike"
+          ]
+        }
+      ],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "oath-of-the-ancients",
+      "name": "Oath of the Ancients",
+      "classIndex": "paladin",
+      "level": 3,
+      "flavor": "Paladins of the Oath of the Ancients sit beside the ancient spirits of nature, whether great spirits, fey, or elemental. They fight to preserve the balance of life and growth, and call on the ancients power to mend the weary.",
+      "spellGrants": [
+        {
+          "minClassLevel": 3,
+          "spells": [
+            "speak-with-animals"
+          ]
+        },
+        {
+          "minClassLevel": 5,
+          "spells": [
+            "moonbeam",
+            "misty-step"
+          ]
+        },
+        {
+          "minClassLevel": 9,
+          "spells": [
+            "plant-growth",
+            "protection-from-energy"
+          ]
+        },
+        {
+          "minClassLevel": 13,
+          "spells": [
+            "ice-storm",
+            "stoneskin"
+          ]
+        },
+        {
+          "minClassLevel": 17,
+          "spells": [
+            "commune-with-nature",
+            "tree-stride"
+          ]
+        }
+      ],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "oath-of-vengeance",
+      "name": "Oath of Vengeance",
+      "classIndex": "paladin",
+      "level": 3,
+      "flavor": "The Oath of Vengeance is a solemn commitment to punish those who have committed a grievous sin. A paladin of this oath is a willing weapon, pursuing justice with single-minded determination until the offending wrong is avenged.",
+      "spellGrants": [
+        {
+          "minClassLevel": 3,
+          "spells": [
+            "bane",
+            "hunters-mark"
+          ]
+        },
+        {
+          "minClassLevel": 5,
+          "spells": [
+            "hold-person",
+            "misty-step"
+          ]
+        },
+        {
+          "minClassLevel": 9,
+          "spells": [
+            "haste",
+            "protection-from-energy"
+          ]
+        },
+        {
+          "minClassLevel": 13,
+          "spells": [
+            "banishment",
+            "dimension-door"
+          ]
+        },
+        {
+          "minClassLevel": 17,
+          "spells": [
+            "hold-monster",
+            "scrying"
+          ]
+        }
+      ],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "hunter",
+      "name": "Hunter",
+      "classIndex": "ranger",
+      "level": 3,
+      "flavor": "Emulating the Hunter archetype means standing between civilisation and the terrors of the wilderness. A hunter learns specialised techniques for hunting down enemies, fighting tooth and nail beside allies, and surviving wherever prey might lead.",
+      "spellGrants": [],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "beast-master",
+      "name": "Beast Master",
+      "classIndex": "ranger",
+      "level": 3,
+      "flavor": "A beast master forms a close bond with an animal companion, bringing it into the field as a partner in the hunt rather than as a mount or a pet.",
+      "spellGrants": [],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "arcane-trickster",
+      "name": "Arcane Trickster",
+      "classIndex": "rogue",
+      "level": 3,
+      "flavor": "Some rogues enhance their fine honed skills of stealth and agility with magic, learning tricks of enchantment and illusion. They include pickpockets and burglars, pranksters and mischief makers, and serious practitioners of the arcane arts.",
+      "spellGrants": [
+        {
+          "cantrip": true,
+          "spells": [
+            "mage-hand"
+          ]
+        },
+        {
+          "cantrip": true,
+          "choose": 2,
+          "spellList": "wizard",
+          "spells": [
+            "acid-splash",
+            "chill-touch",
+            "dancing-lights",
+            "fire-bolt",
+            "light",
+            "mage-hand",
+            "mending",
+            "message",
+            "minor-illusion",
+            "poison-spray",
+            "prestidigitation",
+            "ray-of-frost",
+            "shocking-grasp",
+            "true-strike"
+          ]
+        }
+      ],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "assassin",
+      "name": "Assassin",
+      "classIndex": "rogue",
+      "level": 3,
+      "flavor": "Assassins are rogues who specialise in the arts of death and deception. Their mastery of stealth, disguise, and poison allows them to walk openly in a crowd unnoticed, then strike without warning.",
+      "spellGrants": [],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "thief",
+      "name": "Thief",
+      "classIndex": "rogue",
+      "level": 3,
+      "flavor": "Thieves are rogues who specialise in infiltration, stealth, and lockpicking. Their agility and quickness make them natural burglars and escorts, and they are as comfortable in a bustling city market as on a lonely back road.",
+      "spellGrants": [],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "draconic-bloodline",
+      "name": "Draconic Bloodline",
+      "classIndex": "sorcerer",
+      "level": 1,
+      "flavor": "Draconic Bloodline sorcerers have a powerful, innate connection to their draconic heritage, though they lack the ability to speak or understand the speech of dragons. A dragon magic courses through their veins, shaping innate sorcery.",
+      "spellGrants": [],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "wild-magic",
+      "name": "Wild Magic",
+      "classIndex": "sorcerer",
+      "level": 1,
+      "flavor": "The wild magic of the sorcerer is unpredictable. Wild Magic sorcerers are erratic and impulsive, and their magic surges without warning, flaring and fading without apparent cause.",
+      "spellGrants": [],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "archfey",
+      "name": "The Archfey",
+      "classIndex": "warlock",
+      "level": 1,
+      "flavor": "Your patron is a lord or lady of the fey, a creature of legend whose secrets your road to power has exposed you to. Their favour marks you as one of their chosen, and their favour is not a gift you will soon forget.",
+      "spellGrants": [
+        {
+          "minClassLevel": 1,
+          "spells": [
+            "faerie-fire",
+            "sleep"
+          ]
+        },
+        {
+          "minClassLevel": 3,
+          "spells": [
+            "calm-emotions"
+          ]
+        },
+        {
+          "minClassLevel": 5,
+          "spells": [
+            "blink",
+            "plant-growth"
+          ]
+        },
+        {
+          "minClassLevel": 7,
+          "spells": [
+            "dominate-beast",
+            "greater-invisibility"
+          ]
+        },
+        {
+          "minClassLevel": 9,
+          "spells": [
+            "dominate-person",
+            "seeming"
+          ]
+        }
+      ],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "fiend",
+      "name": "The Fiend",
+      "classIndex": "warlock",
+      "level": 1,
+      "flavor": "Your patron is a fiend from the lower planes, a creature whose malevolence runs in your blood. Their favour marks you as one of their chosen, and their favour is not a gift you will soon forget.",
+      "spellGrants": [
+        {
+          "minClassLevel": 1,
+          "spells": [
+            "burning-hands",
+            "command"
+          ]
+        },
+        {
+          "minClassLevel": 3,
+          "spells": [
+            "blindness-deafness",
+            "scorching-ray"
+          ]
+        },
+        {
+          "minClassLevel": 5,
+          "spells": [
+            "fireball",
+            "stinking-cloud"
+          ]
+        },
+        {
+          "minClassLevel": 7,
+          "spells": [
+            "fire-shield",
+            "wall-of-fire"
+          ]
+        },
+        {
+          "minClassLevel": 9,
+          "spells": [
+            "flame-strike",
+            "hallow"
+          ]
+        }
+      ],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "great-old-one",
+      "name": "The Great Old One",
+      "classIndex": "warlock",
+      "level": 1,
+      "flavor": "Your patron is a mysterious entity whose nature is utterly foreign to the fabric of reality. Some scholars say such beings are myths, or aberrations from far beyond the planes, but none doubt that they are real.",
+      "spellGrants": [
+        {
+          "minClassLevel": 1,
+          "spells": [
+            "hideous-laughter"
+          ]
+        },
+        {
+          "minClassLevel": 3,
+          "spells": [
+            "detect-thoughts"
+          ]
+        },
+        {
+          "minClassLevel": 5,
+          "spells": [
+            "clairvoyance",
+            "sending"
+          ]
+        },
+        {
+          "minClassLevel": 7,
+          "spells": [
+            "dominate-beast",
+            "black-tentacles"
+          ]
+        },
+        {
+          "minClassLevel": 9,
+          "spells": [
+            "dominate-person",
+            "telekinesis"
+          ]
+        }
+      ],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "school-of-abjuration",
+      "name": "School of Abjuration",
+      "classIndex": "wizard",
+      "level": 2,
+      "flavor": "The School of Abjuration emphasises magic that blocks, banishes, or protects. Its magic is sometimes considered primitive by wizards who focus on raw power, but the diligent study of this school can produce powerful defences.",
+      "spellGrants": [],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "school-of-conjuration",
+      "name": "School of Conjuration",
+      "classIndex": "wizard",
+      "level": 2,
+      "flavor": "As a conjurer, you summon spirits and creatures to do your bidding. The conjuration school emphasises summoning spells and creatures, and bending the will of nature to your purpose.",
+      "spellGrants": [],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "school-of-divination",
+      "name": "School of Divination",
+      "classIndex": "wizard",
+      "level": 2,
+      "flavor": "The School of Divination is dedicated to the study of the riddles of the universe. Divination spells grant insight into the hidden truths of the cosmos and the workings of fate.",
+      "spellGrants": [],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "school-of-enchantment",
+      "name": "School of Enchantment",
+      "classIndex": "wizard",
+      "level": 2,
+      "flavor": "As a member of the School of Enchantment, you have honed your ability to magically influence the minds of others. You specialise in that magic, and your spells are especially potent in the hands of a skilled enchanter.",
+      "spellGrants": [],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "school-of-evocation",
+      "name": "School of Evocation",
+      "classIndex": "wizard",
+      "level": 2,
+      "flavor": "You focus your study on the raw power of magic. You favour spells that you can unleash in the greatest possible blast, and your scholarship centres on the theory and practice of evocation, the most destructive of the schools.",
+      "spellGrants": [],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "school-of-illusion",
+      "name": "School of Illusion",
+      "classIndex": "wizard",
+      "level": 2,
+      "flavor": "The School of Illusion is concerned with the study of light and illusion, and its practitioners are masters of the sleight of hand and the fabrication of phantasms.",
+      "spellGrants": [
+        {
+          "cantrip": true,
+          "spells": [
+            "minor-illusion"
+          ]
+        }
+      ],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "school-of-necromancy",
+      "name": "School of Necromancy",
+      "classIndex": "wizard",
+      "level": 2,
+      "flavor": "The School of Necromancy explores the cosmic forces of life, death, and undeath. Its practitioners toil in the dark, bending the boundaries between life and death to speak with the dead.",
+      "spellGrants": [
+        {
+          "minClassLevel": 6,
+          "spells": [
+            "animate-dead"
+          ]
+        }
+      ],
+      "grantsExtraSpellSlots": false
+    },
+    {
+      "index": "school-of-transmutation",
+      "name": "School of Transmutation",
+      "classIndex": "wizard",
+      "level": 2,
+      "flavor": "You focus your studies on transmutation, the magical mystery of changing one form into another. Your expertise is in altering the properties of objects and beings, and in transforming yourself into other forms.",
+      "spellGrants": [
+        {
+          "minClassLevel": 10,
+          "spells": [
+            "polymorph"
+          ]
+        }
+      ],
+      "grantsExtraSpellSlots": false
+    }
+  ]
+}

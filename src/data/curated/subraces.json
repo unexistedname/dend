@@ -1,0 +1,184 @@
+{
+  "source": "D&D 5e Player's Handbook (2014), p. 17-31; trait and spell references cross-checked against the local SRD 5.1 files",
+  "notes": [
+    "These are the five PHB (2014) subraces absent from SRD 5.1. 5e-SRD-Subraces.json already contains hill-dwarf, high-elf, lightfoot-halfling and rock-gnome, so there is no index collision.",
+    "`traitRefs` holds only indexes that exist in 5e-SRD-Traits.json. Traits that have no SRD entry (Fleet of Foot, Mask of the Wild, Drow Magic, Stout Halfling Vitality) carry the verbatim PHB text in `traitText` instead.",
+    "Traits granted by the parent race are deliberately NOT repeated here: Darkvision, Fey Ancestry, Keen Senses, Trance (elf), Dwarven Resilience, Stonecunning (dwarf), Gnome Cunning (gnome).",
+    "`naturally-stealthy` belongs to the lightfoot halfling, not the stout halfling, so the stout halfling has no trait references.",
+    "The wood elf's additional language is represented by the SRD `extra-language` trait; `languages` is therefore empty because the language is a choice, not a fixed grant.",
+    "The drow is not a race or subrace in SRD 5.1, so its Darkvision comes from the drow entry in the PHB rather than a local reference.",
+    "`cantrips` lists SRD spell indexes. The PHB describes faerie fire as one of the drow's Drow Magic cantrips, but in SRD 5.1 faerie fire is a 1st-level spell (dancing lights is the only 0-level one). The PHB wording is preserved and the discrepancy is recorded here.",
+    "The drow's darkness is a once-per-long-rest 3rd-level cast without material components; it is recorded in `spells`, not `cantrips`.",
+    "The forest gnome's minor illusion is a permanent innate cantrip, so it is recorded as a spell index rather than as a trait.",
+    "`speedOverride` is only present when the subrace changes the parent's walking speed.",
+    "Armor, weapon and hit-point bonuses below are the exact PHB grants; subraces without them carry empty arrays so every entry has the same shape.",
+    "Mountain Dwarf grants +2 Strength only. The dwarf ancestry already grants +2 Constitution, so a second +1 here would double-count it; the +1 Constitution shown on Mountain Dwarf in the 2024 version is not PHB 2014 and is excluded.",
+    "Mountain Dwarf lists no weapon proficiencies because the dwarven-combat-training trait in 5e-SRD-Traits.json already grants battleaxe, handaxe, light hammer and warhammer. Adding `simple-weapons` here would wrongly grant every simple weapon.",
+    "Curated because 5e-SRD-Subraces.json publishes only hill-dwarf, high-elf, lightfoot-halfling and rock-gnome."
+  ],
+  "subraces": [
+    {
+      "index": "mountain-dwarf",
+      "name": "Mountain Dwarf",
+      "race": {
+        "index": "dwarf",
+        "name": "Dwarf"
+      },
+      "abilityBonuses": {
+        "str": 2
+      },
+      "speedOverride": null,
+      "languages": [],
+      "traitRefs": [
+        "dwarven-toughness"
+      ],
+      "traitText": [],
+      "proficiencies": {
+        "armor": [
+          "light-armor",
+          "medium-armor",
+          "shields"
+        ],
+        "weapons": []
+      },
+      "hitPointsBonus": "1 at 1st level, then 1 at every level after 1st",
+      "cantrips": [],
+      "spells": []
+    },
+    {
+      "index": "wood-elf",
+      "name": "Wood Elf",
+      "race": {
+        "index": "elf",
+        "name": "Elf"
+      },
+      "abilityBonuses": {
+        "wis": 1
+      },
+      "speedOverride": 35,
+      "languages": [],
+      "traitRefs": [
+        "elf-weapon-training",
+        "extra-language"
+      ],
+      "traitText": [
+        {
+          "name": "Fleet of Foot",
+          "desc": [
+            "Your walking speed increases to 35 feet."
+          ]
+        },
+        {
+          "name": "Mask of the Wild",
+          "desc": [
+            "You have a limited supernatural intuition. While you are disguised as a creature of your race, you have advantage on Intuition checks to hide."
+          ]
+        }
+      ],
+      "proficiencies": {
+        "armor": [],
+        "weapons": []
+      },
+      "hitPointsBonus": null,
+      "cantrips": [],
+      "spells": []
+    },
+    {
+      "index": "drow",
+      "name": "Drow",
+      "race": {
+        "index": "elf",
+        "name": "Elf"
+      },
+      "abilityBonuses": {
+        "cha": 1
+      },
+      "speedOverride": null,
+      "languages": [],
+      "traitRefs": [],
+      "traitText": [
+        {
+          "name": "Drow Magic",
+          "desc": [
+            "At 1st level, you know the dancing lights and faerie fire cantrips. In addition, at 3rd level, you can cast the darkness spell once per long rest without material components."
+          ]
+        }
+      ],
+      "proficiencies": {
+        "armor": [],
+        "weapons": []
+      },
+      "hitPointsBonus": null,
+      "cantrips": [
+        "dancing-lights",
+        "faerie-fire"
+      ],
+      "spells": [
+        {
+          "minClassLevel": 3,
+          "spell": "darkness",
+          "uses": "1/long-rest",
+          "materialComponents": false
+        }
+      ],
+      "notes": [
+        "The PHB lists Dancing Lights and Faerie Fire as drow cantrips and Darkness as a 3rd-level spell usable once per long rest.",
+        "SRD 5.1.2 files faerie-fire as a 1st-level spell instead of a cantrip. The PHB grouping is kept here; validate-srd.mjs reports the discrepancy as a warning.",
+        "Drow Magic also grants Darkvision, which the SRD already publishes separately as the darkvision trait."
+      ]
+    },
+    {
+      "index": "stout-halfling",
+      "name": "Stout Halfling",
+      "race": {
+        "index": "halfling",
+        "name": "Halfling"
+      },
+      "abilityBonuses": {
+        "con": 1
+      },
+      "speedOverride": null,
+      "languages": [],
+      "traitRefs": [],
+      "traitText": [
+        {
+          "name": "Stout Halfling Vitality",
+          "desc": [
+            "You have advantage on saving throws against poison, and you have resistance against poison damage."
+          ]
+        }
+      ],
+      "proficiencies": {
+        "armor": [],
+        "weapons": []
+      },
+      "hitPointsBonus": null,
+      "cantrips": [],
+      "spells": []
+    },
+    {
+      "index": "forest-gnome",
+      "name": "Forest Gnome",
+      "race": {
+        "index": "gnome",
+        "name": "Gnome"
+      },
+      "abilityBonuses": {
+        "dex": 1
+      },
+      "speedOverride": null,
+      "languages": [],
+      "traitRefs": [],
+      "traitText": [],
+      "proficiencies": {
+        "armor": [],
+        "weapons": []
+      },
+      "hitPointsBonus": null,
+      "cantrips": [
+        "minor-illusion"
+      ],
+      "spells": []
+    }
+  ]
+}
