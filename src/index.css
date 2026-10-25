@@ -18,6 +18,7 @@
   --color-brand: #e40712;
   --color-brand-dark: #b00610;
   --color-gold: #d7b26a;
+  --color-edge: #5d4a34;
 
   --font-sans: 'Barlow Semi Condensed', ui-sans-serif, system-ui, sans-serif;
   --font-display: 'Barlow Condensed', 'Barlow Semi Condensed', ui-sans-serif, sans-serif;
@@ -307,7 +308,114 @@ details[open] {
   }
 }
 
+/* Character sheet: a torn-edge plate under a red-to-gold flourish. */
+.sheet-header {
+  border: 0;
+  isolation: isolate;
+  padding: 1.25rem 1.25rem 1rem;
+  position: relative;
+}
+
+/* The plate is a pseudo-element so the paper-edge filter wobbles the paper,
+   not the name inside it. */
+.sheet-header::before {
+  background-color: var(--color-panel);
+  background-image:
+    radial-gradient(420px 200px at 12% -30%, rgb(228 7 18 / 0.18), transparent 70%),
+    radial-gradient(300px 160px at 92% 110%, rgb(215 178 106 / 0.07), transparent 70%);
+  border: 2px solid var(--color-edge);
+  border-radius: 3px;
+  content: '';
+  filter: url(#paper-edge);
+  inset: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.sheet-name {
+  color: var(--color-parchment);
+  font-family: var(--font-brand);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  margin: 0.2rem 0 0.3rem;
+  text-transform: none;
+}
+
+.sheet-subtitle {
+  color: var(--color-gold);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sheet-rule {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-brand),
+    var(--color-gold) 55%,
+    transparent
+  );
+  border-radius: 2px;
+  filter: url(#paper-edge-line);
+  height: 3px;
+  margin: 0.9rem 0 1rem;
+}
+
+/* Sheet cards share the same torn-paper edge; the pseudo-element keeps the
+   displacement off the text. */
+.sheet > section {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  isolation: isolate;
+  position: relative;
+}
+
+.sheet > section::before {
+  background-color: var(--color-panel);
+  border: 2px solid var(--color-edge);
+  border-radius: 3px;
+  content: '';
+  filter: url(#paper-edge);
+  inset: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+/* Screen paper mode: the sheet's paper palette, switched by its paper button.
+   Keep the values in sync with the print palette in @media print below. */
+.sheet.paper-light {
+  --color-night: #fff;
+  --color-night-2: #f7eedd;
+  --color-panel: #fcf7ec;
+  --color-panel-2: #f4e9d6;
+  --color-line: #b39a74;
+  --color-line-soft: #d9c8aa;
+  --color-field: #8a7659;
+  --color-parchment: #241b12;
+  --color-body: #33271a;
+  --color-muted: #6d5a42;
+  --color-brand: #9d0f18;
+  --color-brand-dark: #7c0c12;
+  --color-gold: #7a5616;
+  --color-edge: #8a6a3f;
+  --color-red-300: #7d1414;
+  --color-red-500: #b44040;
+  --color-amber-200: #6b4a00;
+  --color-amber-500: #a07828;
+  --color-sky-200: #17435f;
+  --color-sky-500: #4b7f9e;
+  --color-emerald-400: #145c3a;
+  color: var(--color-body);
+}
+
 @media print {
+  @page {
+    margin: 12mm;
+  }
+
   /* Only the sheet prints; chrome is hidden. */
   .no-print {
     display: none !important;
@@ -317,20 +425,113 @@ details[open] {
     color-scheme: light;
   }
 
-  body {
-    background: white;
+  html,
+  body,
+  #root,
+  #root > div {
+    background: #fff !important;
   }
 
-  .print-page {
+  /*
+   * Print the same sheet, re-inked for paper: cream plates, brown frames, dark
+   * ink and the red/gold accents. Plates disappear if the browser is set not to
+   * print backgrounds; the ink and frames still read.
+   */
+  .sheet {
+    --color-night: #fff;
+    --color-night-2: #f7eedd;
+    --color-panel: #fcf7ec;
+    --color-panel-2: #f4e9d6;
+    --color-line: #b39a74;
+    --color-line-soft: #d9c8aa;
+    --color-field: #8a7659;
+    --color-parchment: #241b12;
+    --color-body: #33271a;
+    --color-muted: #6d5a42;
+    --color-brand: #9d0f18;
+    --color-brand-dark: #7c0c12;
+    --color-gold: #7a5616;
+    --color-edge: #8a6a3f;
+    --color-red-300: #7d1414;
+    --color-red-500: #b44040;
+    --color-amber-200: #6b4a00;
+    --color-amber-500: #a07828;
+    --color-sky-200: #17435f;
+    --color-sky-500: #4b7f9e;
+    --color-emerald-400: #145c3a;
+    /* Text without its own colour class inherits the used value from the app
+       root, which is still the dark theme's light ink; re-resolve it here. */
+    color: var(--color-body);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Cards flow across pages: the frame slices at the page edge and closes on the
+     last page, so a long section never leaves half a page blank. */
+  .sheet-header {
     break-inside: avoid;
   }
 
-  /* shortcut: print flattens the dark theme to ink on white, losing accent colours. */
+  /* A CSS grid does not fragment across printed pages; stack the cards so a
+     frame can continue onto the next page. */
+  .sheet {
+    display: block;
+  }
+
+  .sheet > * + * {
+    margin-top: 1rem;
+  }
+
+  /* Real frames, not the filtered pseudo-element: a pseudo that is absolutely
+     positioned inside a card cannot follow it over a page break, which left long
+     cards (Features) unframed and their text overflowing. Clone closes the frame
+     on every page instead of slicing it at the page edge. */
+  .sheet-header,
+  .sheet > section {
+    background-color: var(--color-panel);
+    border: 2px solid var(--color-edge);
+    border-radius: 3px;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  .sheet-header::before,
+  .sheet > section::before {
+    display: none;
+  }
+
+  /* The tall two-column Features block becomes one flowing column on paper. */
+  .sheet .features-grid {
+    display: block;
+  }
+
+  .sheet .features-grid > * + * {
+    margin-top: 0.75rem;
+  }
+
+  /* Keep table headers with their rows and rows with their own text. */
+  .sheet thead {
+    display: table-header-group;
+  }
+
+  .sheet tr,
+  .sheet li {
+    break-inside: avoid;
+  }
+
+  .sheet p {
+    orphans: 2;
+    widows: 2;
+  }
+
+  /* A section title should not be the last thing on a page. */
+  .card-title {
+    break-after: avoid;
+  }
+
+  /* Shadows are depth for the screen only. */
   .print-page,
   .print-page * {
-    background: transparent !important;
-    border-color: #bbb !important;
     box-shadow: none !important;
-    color: #111 !important;
   }
 }
