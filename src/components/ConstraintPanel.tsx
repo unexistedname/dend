@@ -31,7 +31,7 @@ export function ConstraintPanel({
 
   if (!errors.length && !warnings.length && !infos.length) {
     return (
-      <p className="text-sm text-emerald-400">
+      <p className="rule-check-success text-sm text-emerald-400">
         <Tip text="The character builder checks your choices against the rules of the game.">
           No rule violations.
         </Tip>
@@ -40,7 +40,7 @@ export function ConstraintPanel({
   }
 
   return (
-    <div className="grid gap-2">
+    <div className="rule-check grid gap-2">
       {[...errors, ...warnings, ...infos].map((violation) => (
         <div
           key={`${violation.id}-${violation.rule}`}

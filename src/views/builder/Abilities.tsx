@@ -5,7 +5,7 @@
  * The inputs edit the *base* score the player chose; everything else comes from the
  * rules engine, which is also what validates the result.
  */
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ABILITY_KEYS, type AbilityKey } from '../../data/types'
 import { abilityLabels, type AsiEntry, type Character } from '../../state/schema'
 import {
@@ -33,9 +33,27 @@ const METHODS = [
 
 const STANDARD = [15, 14, 13, 12, 10, 8]
 
+/** Slot-machine values shown while a real 4d6 result is already stored. */
+const previewScores = (): Record<AbilityKey, number> =>
+  Object.fromEntries(
+    ABILITY_KEYS.map((key) => [key, 8 + Math.floor(Math.random() * 11)]),
+  ) as Record<AbilityKey, number>
+
 export function Abilities({ character, ctx, patch }: Props) {
   const derived = deriveCharacter(character, ctx)
   const method = character.abilityMethod.method
+  const [preview, setPreview] = useState<Record<AbilityKey, number> | null>(null)
+  const [settling, setSettling] = useState(false)
+  const rollTimer = useRef<number | null>(null)
+  const settleTimer = useRef<number | null>(null)
+
+  useEffect(
+    () => () => {
+      if (rollTimer.current) window.clearInterval(rollTimer.current)
+      if (settleTimer.current) window.clearTimeout(settleTimer.current)
+    },
+    [],
+  )
 
   const setScore = (ability: AbilityKey, value: number) => {
     if (Number.isNaN(value)) return
@@ -50,13 +68,35 @@ export function Abilities({ character, ctx, patch }: Props) {
     })
   }
 
-  const useRolled = () => {
+  const applyRolled = () => {
     const rolls = rollAbilityScores()
     const [str, dex, con, int, wis, cha] = rolls
+    // Store the result first: the flicker is display-only, so leaving the tab
+    // mid-animation still keeps the roll and the rule check never sees previews.
     patch({
       abilityScores: { str, dex, con, int, wis, cha },
       abilityMethod: { method: 'rolled', rolls },
     })
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    if (rollTimer.current) window.clearInterval(rollTimer.current)
+    if (settleTimer.current) window.clearTimeout(settleTimer.current)
+    setSettling(false)
+    setPreview(previewScores())
+
+    const end = Date.now() + 450
+    rollTimer.current = window.setInterval(() => {
+      if (Date.now() >= end) {
+        window.clearInterval(rollTimer.current!)
+        rollTimer.current = null
+        setPreview(null)
+        setSettling(true)
+        settleTimer.current = window.setTimeout(() => setSettling(false), 620)
+        return
+      }
+      setPreview(previewScores())
+    }, 55)
   }
 
   const remaining = pointBuyRemaining(ctx, character.abilityScores)
@@ -99,10 +139,13 @@ export function Abilities({ character, ctx, patch }: Props) {
           </button>
           <button
             type="button"
-            onClick={useRolled}
-            className="btn"
+            onClick={() => {
+              if (!preview) applyRolled()
+            }}
+            className={`btn ${preview ? 'opacity-50' : ''}`}
+            aria-disabled={preview !== null}
           >
-            Roll 4d6
+            {preview ? 'Rolling…' : 'Roll 4d6'}
           </button>
           {method === 'point-buy' ? (
             <span
@@ -115,27 +158,34 @@ export function Abilities({ character, ctx, patch }: Props) {
         </div>
       </div>
 
-      <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+      <div
+        className={`mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 ${
+          preview ? 'dice-rolling' : ''
+        } ${settling ? 'dice-settled' : ''}`}
+      >
         {ABILITY_KEYS.map((key) => {
           const row = derived.abilities[key]
+          const base = preview ? preview[key] : row.base
+          const total = preview ? base + row.racial + row.asi : row.total
           return (
-            <div key={key} className="rounded border border-line-soft p-2 text-center">
+            <div key={key} className="ability-card rounded border border-line-soft p-2 text-center">
               <div className="text-xs font-semibold uppercase tracking-wide text-muted">
                 {key}
               </div>
               <NumberInput
                 aria-label={abilityLabels[key]}
-                value={character.abilityScores[key]}
+                value={base}
                 min={method === 'point-buy' ? 8 : 1}
                 max={method === 'point-buy' ? 15 : 30}
+                readOnly={preview !== null}
                 onChange={(e) => setScore(key, Number(e.target.value))}
-                className="text-center"
+                className="text-center tabular-nums"
               />
               <div className="mt-1 text-lg font-bold">
-                {formatModifier(abilityModifier(row.total))}
+                {formatModifier(abilityModifier(total))}
               </div>
               <div className="text-[11px] leading-tight text-muted">
-                total {row.total}
+                total {total}
                 {row.racial ? ` (+${row.racial})` : ''}
                 {row.asi ? ` (ASI +${row.asi})` : ''}
               </div>
@@ -162,8 +212,8 @@ export function Abilities({ character, ctx, patch }: Props) {
               <tr key={key} className="border-b border-line-soft">
                 <td className="py-1">{abilityLabels[key]}</td>
                 <td className="py-1 text-right">{row.base}</td>
-                <td className="py-1 text-right">{row.racial || 'â€”'}</td>
-                <td className="py-1 text-right">{row.asi || 'â€”'}</td>
+                <td className="py-1 text-right">{row.racial || '—'}</td>
+                <td className="py-1 text-right">{row.asi || '—'}</td>
                 <td className="py-1 text-right font-semibold">{row.total}</td>
                 <td className="py-1 text-right">
                   <Tip text="Your ability modifier is half your ability score minus 10, rounded down.">
@@ -252,7 +302,7 @@ function AsiRow({
   }
 
   const abilityOptions = [
-    { value: '', label: 'â€”' },
+    { value: '', label: '—' },
     ...ABILITY_KEYS.map((key) => ({ value: key, label: abilityLabels[key] })),
   ]
 
@@ -302,7 +352,7 @@ function AsiRow({
             if (!name) onClear()
             else onUpsert({ abilityBonuses: {}, feat: name, asiType: 'feat' })
           }}
-          placeholder="Feat name (from the Player's Handbook â€” feats are not in the SRD)"
+          placeholder="Feat name (from the Player's Handbook — feats are not in the SRD)"
           className="mt-2 w-full rounded border border-line px-2 py-1 text-sm"
         />
       ) : (
